@@ -12,19 +12,19 @@ This repo is related to the accompanying video.
 
 ## Preparing The Ground 
 
-    Reset SSD to factory settings if it badly worn. Ignore if using an sdcard.
+- Reset SSD to factory settings if it badly worn. Ignore if using an sdcard.
 ```
 sudo nvme format -s1 -lb=0 /dev/nvme0n1
 ```
-    Flash RPiOS with `rpi-imager`.
+- Flash RPiOS with `rpi-imager`.
 
-    Change `BOOT_ORDER` line in order to boot from an SSD (I started with an sdcard). BOOT_ORDER options read from right to left, with 6 representing the nvme drive, 1 is sdcard and 4 is USB boot) 
+- Change `BOOT_ORDER` line in order to boot from an SSD (I started with an sdcard). BOOT_ORDER options read from right to left, with 6 representing the nvme drive, 1 is sdcard and 4 is USB boot) 
 
 ```
 sudo rpi-eeprom-config --edit
 BOOT_ORDER=0xf416
 ```
-    Now reboot into RPiOS
+- Now reboot into RPiOS
 
 ## Install some initial packages
 
@@ -32,7 +32,7 @@ BOOT_ORDER=0xf416
 sudo apt-get update
 sudo apt-get install aptitude zoxide lsd zsh ranger ripgrep fd-find fzf vim-gtk3 alacritty kitty cmake ninja-build interception-caps2esc interception-tools interception-compat wf-recorder timeshift wl-clipboard wl-copy obs-studio dselect slurp
 ```
-    My process was to reboot with camera and mic plugged in to record session to record the video with the following command:
+- My process was to reboot with camera and mic plugged in to record session to record the video with the following command:
 ```
 MESA_GL_VERSION_OVERRIDE=3.3 obs
 ```
@@ -42,10 +42,10 @@ git clone https://github.com/gnmearacaun/rpios-wayfirewm.git
 ```
 ## Drop the configurations into place
 
-Put wayfire.ini, config.txt and other configs into place. Assuming you're somewhat familiar with Linux already, I've named the files and folders to indicate where they belong. If it's not obvious you can hit me up in the Issues of this page. 
+Put wayfire.ini, config.txt and other configs into place. Assuming you're somewhat familiar with Linux already, I've named the files and folders to indicate where they belong. If it's not obvious you can hit me up in the Issues of this repo. 
     Note: When you make changes to wayfire.ini, RPiOS will log you out, to force you to log back in.
 
-    Customize lxterminal & taskbar, darken theme to taste.
+- Customize lxterminal & taskbar, darken theme to taste.
 
 ## Install Debian package-list 
 Optional, this is my personal list of favorite packages
@@ -117,7 +117,8 @@ To set zsh as your default shell, execute the following.
 ```
 sudo sh -c "echo $(which zsh) >> /etc/shells" && chsh -s $(which zsh)
 ```
-# Or change shell: sudo chsh -s $(which zsh) $USER
+- Or change shell with: `sudo chsh -s $(which zsh) $USER`
+
 Install [zap](https://github.com/zap-zsh/zap)
 ```
 zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1
