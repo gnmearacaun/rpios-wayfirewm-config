@@ -12,11 +12,11 @@ This repo is related to the accompanying video.
 
 ## Preparing The Ground 
 
-- Reset SSD to factory settings if it badly worn. Ignore if using an sdcard.
+- Reset SSD to factory settings if it's got wear. Ignore this step if using an sdcard.
 ```
 sudo nvme format -s1 -lb=0 /dev/nvme0n1
 ```
-- Flash RPiOS with `rpi-imager`.
+- Flash RPiOS with `rpi-imager`
 
 - Change `BOOT_ORDER` line in order to boot from an SSD (I started with an sdcard). BOOT_ORDER options read from right to left, with 6 representing the nvme drive, 1 is sdcard and 4 is USB boot) 
 
@@ -42,7 +42,7 @@ git clone https://github.com/gnmearacaun/rpios-wayfirewm.git
 ```
 ## Drop the configurations into place
 
-Put wayfire.ini, config.txt and other configs into place. Assuming you're somewhat familiar with Linux already, I've named the files and folders to indicate where they belong. If it's not obvious you can hit me up in the Issues of this repo. 
+Put wayfire.ini, config.txt and other configs into place. Assuming you're familiar with Linux, I've named the files and folders to indicate where they belong. If it's not obvious you can hit me up in [Issues](https://github.com/gnmearacaun/rpios-wayfirewm/issues). 
     Note: When you make changes to wayfire.ini, RPiOS will log you out, to force you to log back in.
 
 - Customize lxterminal & taskbar, darken theme to taste.
@@ -134,7 +134,8 @@ export EDITOR="vim"
 ```
 ## Building Neovim 
 
-Neovim dependencies, building and verification
+Neovim dependencies, building and verification. Full disclosure. My brilliant neovim config is based on https://github.com/ChristianChiarulli/nvim
+
 ```
 sudo apt-get install ninja-build gettext cmake unzip curl build-essential
 git clone https://github.com/neovim/neovim.git
