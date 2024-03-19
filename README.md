@@ -4,7 +4,7 @@ A base configuration to quickly get 'up and running' with workspaces and navigat
 
 ## Steps To Setting Up Raspberry Pi For Ease Of Navigation
 
-Raspberry Pi Os Bookworm edition uses WayfireWM, based on Wayland, a modern way of rendering windows (vs X11, the old way). The result is a pleasing desktop experience that is very lightweight on system resources. `~/.config/wayfire.ini` is the place to configure plugins and commands in order to navigate the nine default workspaces using simplified keyboard shortcuts including - [caps2esc](https://gitlab.com/interception/linux/plugins/caps2esc): _transforming the most useless key ever in the most useful one_ and [space2meta](https://gitlab.com/interception/linux/plugins/space2meta): _turn your space key into the meta key when chorded to another key (on key release only)_
+Raspberry Pi Os Bookworm edition uses WayfireWM, based on Wayland, a modern way of rendering windows (vs X11, the old way). The result is a smooth desktop experience and very lightweight on system resources. `~/.config/wayfire.ini` is the place to configure plugins and commands in order to navigate the nine default workspaces using simplified keyboard shortcuts including - [caps2esc](https://gitlab.com/interception/linux/plugins/caps2esc): _transforming the most useless key ever in the most useful one_ and [space2meta](https://gitlab.com/interception/linux/plugins/space2meta): _turn your space key into the meta key when chorded to another key (on key release only)_
 
 This repo is related to the accompanying video. 
 
@@ -93,10 +93,11 @@ The following daemonized sample execution increases udevmon priority (since it'l
 ```
 sudo nice -n -20 udevmon -c udevmon.yaml >udevmon.log 2>udevmon.err &
 ```
+You may notice a lag typing `s` or `space` with an sdcard, but not really with an SSD. For convenience, there's a version of the file without s2arrows
 
-## Install a minimal Vim config 
+## Install A Minimal Vim Configuration 
 
-- For clipboard support, Wayland users should make sure that wl-clipboard is installed. The package vim-gtk3 has better clipboard support. Run in terminal as `gvim -v` (I think). This vim config is based on this https://github.com/nvim-zh/minimal_vim by the incomparable [jdhao](https://github.com/jdhao)
+- For clipboard support, Wayland users should make sure that `wl-clipboard` is installed. The package vim-gtk3 has better clipboard support. This vim config is based on https://github.com/nvim-zh/minimal_vim by the incomparable [jdhao](https://github.com/jdhao)
 
 To avoid default conf interfering with this conf do this:
 ```
@@ -128,21 +129,36 @@ Ensure .zshenv contains
 ```
 export ZDOTDIR=$HOME/.config/zsh
 ```
-Reopen the shell, `zap update` will automatically run. Temporarily set editor to vim in `~/.config/zsh/exports.zsh` for ranger file manager, until neovim is built.
-```
-export EDITOR="vim"
-```
+Reopen the shell, `zap update` will automatically install the plugins before your eyes. 
+
 ## Building Neovim 
 
-Neovim dependencies, building and verification. Full disclosure. My neovim config is based on the brilliant https://github.com/ChristianChiarulli/nvim
+To take advantage of recent developments in the plugins and infrastructure you may want a newer version of neovim than Bookworm repositories are offering. 
 
+- My neovim config is based on https://github.com/ChristianChiarulli/nvim. 
+
+- Note `CMAKE_BUILD_TYPE=RelWithDebInfo` would make a build with Debug info. `Release` generally runs smoother.
+
+- `git checkout nightly` for bleeding edge
+
+Neovim dependencies, building and verification. 
 ```
 sudo apt-get install ninja-build gettext cmake unzip curl build-essential
 git clone https://github.com/neovim/neovim.git
-git checkout nightly
+git checkout stable 
 make CMAKE_BUILD_TYPE=Release
 cd build && sudo cpack -G DEB && sudo dpkg -i nvim-linux64.deb
 nvim -V1 -v
+```
+If you have previously built the image and want to switch branches, do this first
+```
+cd neovim && sudo cmake --build build/ --target uninstall
+```
+
+Alternatively, just delete the CMAKE_INSTALL_PREFIX artifacts:
+```
+sudo rm /usr/local/bin/nvim
+sudo rm -r /usr/local/share/nvim/
 ```
 
 Later when you want to upgrade, go back into the neovim directory (wherever it's stashed). Assuming you're on the branch you want, this will rebuild from scratch and replace the current build.
@@ -166,7 +182,7 @@ curl -fsSL https://fnm.vercel.app/install | bash -s -- --install-dir $HOME/.loca
 ```
 ## Troubleshooting
 
-Mason was not showing up in neovim
+Mason was not showing up in neovim and throwing some errors
 I had to run 
 ```
 :Lazy reload mason.nvim

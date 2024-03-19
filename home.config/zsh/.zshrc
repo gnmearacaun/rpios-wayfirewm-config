@@ -3,9 +3,6 @@
 
 # history
 HISTFILE=~/.zsh_history
-# LESSOPEN="|/home/briain/.local/share/zap/plugins/lesspipe/lesspipe.sh %s"
-# export LESSOPEN
-# source
 
 plug "$HOME/.config/zsh/aliases.zsh"
 plug "$HOME/.config/zsh/exports.zsh"
@@ -13,16 +10,16 @@ plug "$HOME/.config/zsh/exports.zsh"
 # Plugins
 # plug "esc/conda-zsh-completion"
 plug "zsh-users/zsh-autosuggestions"
-# plug "hlissner/zsh-autopair"
+plug "hlissner/zsh-autopair"
 plug "zap-zsh/supercharge"
 plug "zap-zsh/vim"
 plug "zap-zsh/fzf"
 # plug "zap-zsh/exa"
 plug "zsh-users/zsh-syntax-highlighting"
+plug "zsh-users/zsh-history-substring-search"
 plug "zap-zsh/sudo"
 plug "chivalryq/git-alias"
 plug "Freed-Wu/fzf-tab-source"
-# plug "wofr06/lesspipe"
 plug "wintermi/zsh-lsd"
 plug "Aloxaf/fzf-tab"
 plug "zap-zsh/completions"
@@ -46,6 +43,12 @@ if command -v bat &> /dev/null; then
   alias catt="bat --theme \"Visual Studio Dark+\"" 
 fi
 
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
+
 # BOD
 # Load and initialise completion system
 autoload -Uz compinit
@@ -68,5 +71,4 @@ bindkey 'kj' vi-cmd-mode
 # fi
 
 # fnm
-export PATH="/home/briain/.local/bin:$PATH"
 eval "`fnm env`"

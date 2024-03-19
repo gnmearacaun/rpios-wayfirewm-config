@@ -153,16 +153,16 @@ alias sp='aspell -a'
 alias dw='dict -d wn'
 alias da='dict'
 alias t='dict -d moby-thesaurus'
-alias c-c='xclip -sel clip'
-alias c-v='xclip -o -sel clip'
-if type nvim > /dev/null 2>&1; then
-  alias vim='nvim'
-fi
+# alias c-c='xclip -sel clip'
+# alias c-v='xclip -o -sel clip'
+# if type nvim > /dev/null 2>&1; then
+#   alias vim='nvim'
+# fi
 #alias vim='nvim .'
 alias s='sudo'
 alias sduo='sudo'
 alias apt='sudo aptitude'
-alias install='sudo apt-get install'
+alias install='sudo aptitude install'
 alias search='sudo apt-cache search'
 alias purge='sudo apt-get purge'
 alias update='sudo apt-get update'
