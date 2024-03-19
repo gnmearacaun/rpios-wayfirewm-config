@@ -4,7 +4,7 @@ A base configuration to quickly get 'up and running' with workspaces and navigat
 
 ## Steps To Setting Up Raspberry Pi For Ease Of Navigation
 
-Raspberry Pi Os Bookworm edition uses WayfireWM, based on Wayland, a modern way of rendering windows (vs X11, the old way). The result is a smooth desktop experience and very lightweight on system resources. `~/.config/wayfire.ini` is the place to configure plugins and commands in order to navigate the nine default workspaces using simplified keyboard shortcuts including - [caps2esc](https://gitlab.com/interception/linux/plugins/caps2esc): _transforming the most useless key ever in the most useful one_ and [space2meta](https://gitlab.com/interception/linux/plugins/space2meta): _turn your space key into the meta key when chorded to another key (on key release only)_
+Raspberry Pi Os Bookworm edition uses WayfireWM, based on Wayland, a modern way of rendering windows (vs X11, the old way). When the shortcuts are configured its a very smooth desktop experience and extremely light on resources, usually running on 2Gb ram. `~/.config/wayfire.ini` is the place to configure plugins and commands in order to navigate the grid of nine default workspaces using simplified keyboard shortcuts, including - [caps2esc](https://gitlab.com/interception/linux/plugins/caps2esc): _transforming the most useless key ever in the most useful one_ and [space2meta](https://gitlab.com/interception/linux/plugins/space2meta): _turn your space key into the meta key when chorded to another key (on key release only)_
 
 This repo is related to the accompanying video. 
 
@@ -58,7 +58,43 @@ To show if any didn't get installed
 ```
 cut -f1 -d' ' packages.txt | xargs dpkg -l
 ```
-## Build interception-tools keybinds
+## Install A Minimal Vim Configuration 
+
+- The package vim-gtk3 has better clipboard support, Wayland users should install `wl-clipboard` (we did). This vim config is based on https://github.com/nvim-zh/minimal_vim by the incomparable [jdhao](https://github.com/jdhao)
+
+To avoid default conf interfering with this conf do this:
+```
+mv ~/.vimrc ~/.vimrc.bak
+```
+and move the contents of the `home.vim` folder to `~/.vim/`
+
+## Install Zsh and [Zap](https://www.zapzsh.com/) 
+
+To set zsh as your default shell, execute the following.
+```
+sudo sh -c "echo $(which zsh) >> /etc/shells" && chsh -s $(which zsh)
+```
+- Or change shell with: `sudo chsh -s $(which zsh) $USER`
+
+Install [zap](https://github.com/zap-zsh/zap) zsh plugin manager
+```
+zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1
+```
+
+Ensure .zshenv contains
+```
+export ZDOTDIR=$HOME/.config/zsh
+```
+Reopen the shell, `zap update` will automatically install the plugins before your eyes. 
+
+## Get Nerdfonts
+https://github.com/getnf/getnf
+```
+curl -fsSL https://raw.githubusercontent.com/ronniedroid/getnf/master/install.sh | bash
+```
+Run `getnf` in the terminal and follow the prompts.
+
+## Build interception-tools 
 
 [Interception-tools](https://gitlab.com/interception/linux/tools) `caps2esc` (caps_lock is esc when tapped or ctrl when held down), `space2meta` (space key acts as meta when held down in combination with other keys) and `s2arrows`  acts as the arrow keys combining s+j,k,h,l
 
@@ -95,49 +131,13 @@ sudo nice -n -20 udevmon -c udevmon.yaml >udevmon.log 2>udevmon.err &
 ```
 You may notice a lag typing `s` or `space` with an sdcard, but not really with an SSD. For convenience, there's a version of the file without s2arrows
 
-## Install A Minimal Vim Configuration 
+## Build Neovim 
 
-- For clipboard support, Wayland users should make sure that `wl-clipboard` is installed. The package vim-gtk3 has better clipboard support. This vim config is based on https://github.com/nvim-zh/minimal_vim by the incomparable [jdhao](https://github.com/jdhao)
+To take advantage of recent developments in the plugins infrastructure you may want a newer version of Neovim than Bookworm repositories are offering in `stable`. 
 
-To avoid default conf interfering with this conf do this:
-```
-mv ~/.vimrc ~/.vimrc.bak
-```
-and move the contents of the `home.vim` folder to `~/.vim/`
-
-## Get Nerdfonts
-https://github.com/getnf/getnf
-```
-curl -fsSL https://raw.githubusercontent.com/ronniedroid/getnf/master/install.sh | bash
-```
-Run `getnf` in the terminal and follow the prompts.
-
-## [Zap](https://www.zapzsh.com/) Zsh-plugin manager
-
-To set zsh as your default shell, execute the following.
-```
-sudo sh -c "echo $(which zsh) >> /etc/shells" && chsh -s $(which zsh)
-```
-- Or change shell with: `sudo chsh -s $(which zsh) $USER`
-
-Install [zap](https://github.com/zap-zsh/zap)
-```
-zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1
-```
-
-Ensure .zshenv contains
-```
-export ZDOTDIR=$HOME/.config/zsh
-```
-Reopen the shell, `zap update` will automatically install the plugins before your eyes. 
-
-## Building Neovim 
-
-To take advantage of recent developments in the plugins and infrastructure you may want a newer version of neovim than Bookworm repositories are offering. 
+- Note `CMAKE_BUILD_TYPE=RelWithDebInfo` would make a build with Debug info. `Release` runs a bit lighter.
 
 - My neovim config is based on https://github.com/ChristianChiarulli/nvim. 
-
-- Note `CMAKE_BUILD_TYPE=RelWithDebInfo` would make a build with Debug info. `Release` generally runs smoother.
 
 - `git checkout nightly` for bleeding edge
 
