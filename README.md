@@ -1,54 +1,58 @@
 # rpios-wayfirewm
 
-Configuration files to get up and running with workspaces and navigational shortcuts quickly for Raspberry Pi 4 & 5.
+- A keyboard-centric approach to navigate the desktop quickly and efficiently for Raspberry Pi 4 & 5. 
 
-- The default Operating System for Raspberry Pi (Bookworm edition) uses WayfireWM based on Wayland. Wayland is a modern replacement for X11, which has been the default windowing system on Linux for decades. 
+The default Operating System for Raspberry Pi (Bookworm edition) uses WayfireWM based on Wayland. Wayland is a modern replacement for X11, which has been the default windowing system on Linux for decades. However, the inherent power of the Window Manager will only become apparent once the plugins are activated in `~/.config/wayfire.ini` to navigate the grid of nine default workspaces using simplified keyboard shortcuts, including 
+- [caps2esc](https://gitlab.com/interception/linux/plugins/caps2esc): _transforming the most useless key ever in the most useful one_ and 
+- [space2meta](https://gitlab.com/interception/linux/plugins/space2meta): _turn your space key into the meta key when chorded to another key (on key release only)_
 
-When the shortcuts are configured its a very smooth desktop experience and extremely light on resources, usually running on 2Gb ram. `~/.config/wayfire.ini` is the place to configure plugins and commands in order to navigate the grid of nine default workspaces using simplified keyboard shortcuts, including - [caps2esc](https://gitlab.com/interception/linux/plugins/caps2esc): _transforming the most useless key ever in the most useful one_ and [space2meta](https://gitlab.com/interception/linux/plugins/space2meta): _turn your space key into the meta key when chorded to another key (on key release only)_
-
-This repo has an accompanying video. 
+When the shortcuts are configured its a very smooth desktop experience and extremely light on resources, usually running on 2Gb ram. 
+- These are my personal configs. Vim is your friend to change my zsh aliases into your own.
+- This repo has an accompanying video [TBA](https://example.com) 
 
 ## Preparing The Ground 
 
-- Reset SSD to factory settings if it's got wear. Ignore this step if using an sdcard.
+- Reset SSD to factory settings if it's badly worn. Ignore if using an sdcard.
 ```
 sudo nvme format -s1 -lb=0 /dev/nvme0n1
 ```
-- Flash RPiOS with `rpi-imager`
-
+- Flash Raspberry Pi OS onto your SSD/sdcard with `rpi-imager`
+ 
 - Change `BOOT_ORDER` line in order to boot from an SSD (I started with an sdcard). BOOT_ORDER options read from right to left, with 6 representing the nvme drive, 1 is sdcard and 4 is USB boot) 
 
 ```
 sudo rpi-eeprom-config --edit
 BOOT_ORDER=0xf416
 ```
-- Now reboot into RPiOS
+- Now reboot into RPiOS  and follow the setup wizard.
 
-## Install some initial packages
+## Now the Good Stuff
 
+- Install some packages we can use straight away
+ 
 ```
 sudo apt-get update
-sudo apt-get install aptitude zoxide lsd zsh ranger ripgrep fd-find fzf vim-gtk3 alacritty kitty cmake ninja-build interception-caps2esc interception-tools interception-compat wf-recorder timeshift wl-clipboard wl-copy obs-studio dselect slurp
+sudo apt-get install aptitude ranger zsh ripgrep fd-find fzf vim-gtk3 alacritty kitty cmake ninja-build interception-caps2esc interception-tools interception-compat wf-recorder timeshift wl-clipboard obs-studio slurp 
 ```
-- My process was to reboot with camera and mic plugged in to record session to record the video with the following command:
+- My process in video-recording was to reboot (with camera and mic plugged in) with the following command to run obs:
 ```
 MESA_GL_VERSION_OVERRIDE=3.3 obs
 ```
-## Clone the config files 
+## Clone _This_ Repo
 ```
 git clone https://github.com/gnmearacaun/rpios-wayfirewm.git
 ```
-## Drop the configurations into place
+## Place The Configs
 
-Put `wayfire.ini`, `config.txt` and other configs into place, or use your own editor configs. Assuming you're familiar with Linux, I've named the files and folders to indicate where they belong. If it's not obvious you can hit me up in [Issues](https://github.com/gnmearacaun/rpios-wayfirewm/issues). 
+Put `wayfire.ini` and any of the other configuration files and folders you want into `home` and `.config` respectively. Assuming you're familiar with Linux, the files and folders are named in such a way as to indicate where they should end up. If it's not obvious, open an [issue](https://github.com/gnmearacaun/rpios-wayfirewm/issues). 
 
-- Note: When you make changes to wayfire.ini, RPiOS will log you out, to force you to log back in.
+- Note: When one edits wayfire.ini, one is automatically logged out.
 
-- Customize lxterminal & taskbar, darken theme to taste.
+- Customize lxterminal & taskbar, darken theme.
 
 ## Install Debian package-list 
-Optional, this is my personal list of favorite packages
 
+Optional; these are my personal selections
 ```
 sudo apt-get install dselect --yes
 sudo dpkg --set-selections < "packages.txt"
@@ -60,9 +64,9 @@ cut -f1 -d' ' packages.txt | xargs dpkg -l
 ```
 ## Install A Minimal Vim Configuration 
 
-- The package vim-gtk3 has better clipboard support, Wayland users should install `wl-clipboard` (we did). This vim config is based on https://github.com/nvim-zh/minimal_vim by the incomparable [jdhao](https://github.com/jdhao)
+- The package vim-gtk3 has better clipboard support than plain old Vim. Wayland users should install `wl-clipboard` (done previously). This vim config is based on https://github.com/nvim-zh/minimal_vim by the incomparable [jdhao](https://github.com/jdhao)
 
-To avoid default conf interfering with this conf do this:
+To avoid default conf interfering with this conf, do this:
 ```
 mv ~/.vimrc ~/.vimrc.bak
 ```

@@ -1,15 +1,10 @@
 abiword						install
-abiword-common					install
 apper						install
-apper-data					install
 aptitude					install
-aptitude-common					install
 apvlv						install
 asciinema					install
 beets						install
-beets-doc					install
 calibre						install
-calibre-bin					install
 cmus						install
 cmus-plugin-ffmpeg				install
 conky-all					install
@@ -21,9 +16,7 @@ disk-manager					deinstall
 dolphin						install
 ebook-speaker					install
 element-desktop					install
-element-io-archive-keyring			install
 elinks						install
-elinks-data					install
 eog						install
 exa						install
 exfalso						install
@@ -62,13 +55,6 @@ gifsicle					install
 git						install
 git-delta					install
 git-doc						install
-git-email					install
-git-lfs						install
-git-man						install
-git-merge-changelog				install
-git-repair					install
-git-secrets					install
-git-sizer					install
 gitless						install
 gitmagic					install
 gmpc						install
@@ -98,10 +84,7 @@ imagemagick-6-common				install
 imagemagick-6.q16				install
 inkscape					install
 kid3						install
-kid3-cli					install
-kid3-core					install
 kitty						install
-kitty-doc					install
 kitty-terminfo					install
 klavaro						install
 kodi						install
@@ -113,6 +96,7 @@ krita						install
 krita-data					install
 krita-gmic					install
 leafpad						install
+lsd           install
 mlocate						install
 moc						install
 moc-ffmpeg-plugin:amd64				install
@@ -141,7 +125,6 @@ mutt						install
 ncdu						install
 ncmpcpp						install
 ncurses-base					install
-ncurses-bin					install
 ncurses-doc					install
 ncurses-term					install
 neofetch					install
@@ -231,7 +214,5 @@ zathura-djvu					install
 zathura-pdf-poppler				install
 zoxide						install
 zsh						install
-zsh-autosuggestions				install
 zsh-common					install
 zsh-doc						install
-zsh-syntax-highlighting				install
