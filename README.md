@@ -1,12 +1,12 @@
 # rpios-wayfirewm
-Raspberry Pi OS Bookworm WayfireWM.
-A base configuration to quickly get 'up and running' with workspaces and navigational shortcuts.
 
-## Steps To Setting Up Raspberry Pi For Ease Of Navigation
+Configuration files to get up and running with workspaces and navigational shortcuts quickly for Raspberry Pi 4 & 5.
 
-Raspberry Pi Os Bookworm edition uses WayfireWM, based on Wayland, a modern way of rendering windows (vs X11, the old way). When the shortcuts are configured its a very smooth desktop experience and extremely light on resources, usually running on 2Gb ram. `~/.config/wayfire.ini` is the place to configure plugins and commands in order to navigate the grid of nine default workspaces using simplified keyboard shortcuts, including - [caps2esc](https://gitlab.com/interception/linux/plugins/caps2esc): _transforming the most useless key ever in the most useful one_ and [space2meta](https://gitlab.com/interception/linux/plugins/space2meta): _turn your space key into the meta key when chorded to another key (on key release only)_
+- The default Operating System for Raspberry Pi (Bookworm edition) uses WayfireWM based on Wayland. Wayland is a modern replacement for X11, which has been the default windowing system on Linux for decades. 
 
-This repo is related to the accompanying video. 
+When the shortcuts are configured its a very smooth desktop experience and extremely light on resources, usually running on 2Gb ram. `~/.config/wayfire.ini` is the place to configure plugins and commands in order to navigate the grid of nine default workspaces using simplified keyboard shortcuts, including - [caps2esc](https://gitlab.com/interception/linux/plugins/caps2esc): _transforming the most useless key ever in the most useful one_ and [space2meta](https://gitlab.com/interception/linux/plugins/space2meta): _turn your space key into the meta key when chorded to another key (on key release only)_
+
+This repo has an accompanying video. 
 
 ## Preparing The Ground 
 
