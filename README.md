@@ -24,7 +24,7 @@ sudo nvme format -s1 -lb=0 /dev/nvme0n1
 sudo rpi-eeprom-config --edit
 BOOT_ORDER=0xf416
 ```
-- Now reboot into RPiOS  and follow the setup wizard.
+- Reboot and follow the RPiOS setup wizard.
 
 ## Now the Good Stuff
 
@@ -46,13 +46,16 @@ git clone https://github.com/gnmearacaun/rpios-wayfirewm.git
 
 Put `wayfire.ini` and any of the other configuration files and folders you want into `home` and `.config` respectively. Assuming you're familiar with Linux, the files and folders are named in such a way as to indicate where they should end up. If it's not obvious, open an [issue](https://github.com/gnmearacaun/rpios-wayfirewm/issues). 
 
+- Now you can move around using Super+{a,s,f,w,b,h,j,k,l,<Tab>} and make tiles with <Alt>+{h,j,k,l}
+
 - Note: When one edits wayfire.ini, one is automatically logged out.
 
 - Customize lxterminal & taskbar, darken theme.
 
 ## Install Debian package-list 
 
-Optional; these are my personal selections
+Some personal selections
+
 ```
 sudo apt-get install dselect --yes
 sudo dpkg --set-selections < "packages.txt"
@@ -62,7 +65,9 @@ To show if any didn't get installed
 ```
 cut -f1 -d' ' packages.txt | xargs dpkg -l
 ```
-## Install A Minimal Vim Configuration 
+## A Minimal Vim Configuration 
+
+- Because `vim` makes files shine 
 
 - The package vim-gtk3 has better clipboard support than plain old Vim. Wayland users should install `wl-clipboard` (done previously). This vim config is based on https://github.com/nvim-zh/minimal_vim by the incomparable [jdhao](https://github.com/jdhao)
 
