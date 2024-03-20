@@ -31,7 +31,7 @@ BOOT_ORDER=0xf416
  
 ```
 sudo apt-get update
-sudo apt-get install aptitude ranger zsh ripgrep fd-find fzf vim-gtk3 alacritty cmake ninja-build interception-caps2esc interception-tools interception-compat wf-recorder timeshift wl-clipboard obs-studio slurp 
+sudo apt-get install aptitude ranger zsh ripgrep fd-find fzf vim-gtk3 alacritty cmake ninja-build interception-caps2esc interception-tools interception-compat wf-recorder timeshift wl-clipboard obs-studio slurp swaybg  
 ```
 - My process in video-recording was to reboot (with camera and mic plugged in) with the following command to run obs:
 ```
