@@ -26,10 +26,9 @@ plug "zap-zsh/completions"
 plug "MichaelAquilina/zsh-you-should-use"
 
 # Prompts
+plug "MAHcodes/distro-prompt"
 # plug "spaceship-prompt/spaceship-prompt"
 # plug "zap-zsh/atmachine-prompt"
-# plug "spaceship-prompt/spaceship-prompt"
-plug "MAHcodes/distro-prompt"
 # plug "zap-zsh/zap-prompt"
 # plug "zap-zsh/singularisart-prompt"
 
@@ -60,7 +59,7 @@ bindkey 'kj' vi-cmd-mode
 # eval "$(starship init zsh)"
 # export STARSHIP_CONFIG=~/.config/zsh/starship.toml
 
-# source /home/briain/.config/broot/launcher/bash/br
+# source $HOME/config/broot/launcher/bash/br
 
 # To have your prompt indicate that you are within a shell that will return you to nnn when you are done.
 # This together with #cd on quit (Ctrl-G) becomes a powerful combination.

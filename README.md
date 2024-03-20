@@ -1,13 +1,12 @@
 # rpios-wayfirewm
 
-- A keyboard-centric approach to navigate the desktop quickly and efficiently for Raspberry Pi 4 & 5. 
+- A keyboard-centric approach to navigating the desktop efficiently on Raspberry Pi 4 & 5. A smooth desktop experience which is extremely light on system resources, typically using only 2Gb ram. 
 
-The default Operating System for Raspberry Pi (Bookworm edition) uses WayfireWM based on Wayland. Wayland is a modern replacement for X11, which has been the default windowing system on Linux for decades. However, the inherent power of the Window Manager will only become apparent once the plugins are activated in `~/.config/wayfire.ini` to navigate the grid of nine default workspaces using simplified keyboard shortcuts, including 
+The default Operating System for Raspberry Pi (Bookworm edition) uses WayfireWM build on Wayland with wlroots. Wayland is a modern replacement for X11, which has been the default windowing system on Linux for decades. However, the inherent power only becomes apparent when plugins and commands are specified in the `~/.config/wayfire.ini`. You will quickly be traversing the grid of nine default workspaces. Shortcuts are augmented by:
 - [caps2esc](https://gitlab.com/interception/linux/plugins/caps2esc): _transforming the most useless key ever in the most useful one_ and 
 - [space2meta](https://gitlab.com/interception/linux/plugins/space2meta): _turn your space key into the meta key when chorded to another key (on key release only)_
 
-When the shortcuts are configured its a very smooth desktop experience and extremely light on resources, usually running on 2Gb ram. 
-- These are my personal configs. Vim is your friend to change my zsh aliases into your own.
+- These are my personal configs and contain custom aliases and keybindings.
 - This repo has an accompanying video [TBA](https://example.com) 
 
 ## Preparing The Ground 
@@ -16,7 +15,7 @@ When the shortcuts are configured its a very smooth desktop experience and extre
 ```
 sudo nvme format -s1 -lb=0 /dev/nvme0n1
 ```
-- Flash Raspberry Pi OS onto your SSD/sdcard with `rpi-imager`
+- Flash Raspberry Pi OS onto your SSD/sdcard with `rpi-imagers`s
  
 - Change `BOOT_ORDER` line in order to boot from an SSD (I started with an sdcard). BOOT_ORDER options read from right to left, with 6 representing the nvme drive, 1 is sdcard and 4 is USB boot) 
 
@@ -32,7 +31,7 @@ BOOT_ORDER=0xf416
  
 ```
 sudo apt-get update
-sudo apt-get install aptitude ranger zsh ripgrep fd-find fzf vim-gtk3 alacritty kitty cmake ninja-build interception-caps2esc interception-tools interception-compat wf-recorder timeshift wl-clipboard obs-studio slurp 
+sudo apt-get install aptitude ranger zsh ripgrep fd-find fzf vim-gtk3 alacritty cmake ninja-build interception-caps2esc interception-tools interception-compat wf-recorder timeshift wl-clipboard obs-studio slurp 
 ```
 - My process in video-recording was to reboot (with camera and mic plugged in) with the following command to run obs:
 ```
@@ -48,7 +47,7 @@ Put `wayfire.ini` and any of the other configuration files and folders you want 
 
 - Now you can move around using Super+{a,s,f,w,b,h,j,k,l,<Tab>} and make tiles with <Alt>+{h,j,k,l}
 
-- Note: When one edits wayfire.ini, one is automatically logged out.
+- Note: When you edit wayfire.ini, you may get automatically logged out. If not you can use `Ctrl-Alt-Backspace` to logout and test your edits.
 
 - Customize lxterminal & taskbar, darken theme.
 
@@ -69,7 +68,7 @@ cut -f1 -d' ' packages.txt | xargs dpkg -l
 
 - Because `vim` makes files shine 
 
-- The package vim-gtk3 has better clipboard support than plain old Vim. Wayland users should install `wl-clipboard` (done previously). This vim config is based on https://github.com/nvim-zh/minimal_vim by the incomparable [jdhao](https://github.com/jdhao)
+- The package vim-gtk3 has better clipboard support than plain old Vim itself. Wayland users need `wl-clipboard` (installed above). This vim config is based on https://github.com/nvim-zh/minimal_vim by the incomparable [jdhao](https://github.com/jdhao)
 
 To avoid default conf interfering with this conf, do this:
 ```
@@ -89,7 +88,6 @@ Install [zap](https://github.com/zap-zsh/zap) zsh plugin manager
 ```
 zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1
 ```
-
 Ensure .zshenv contains
 ```
 export ZDOTDIR=$HOME/.config/zsh
@@ -103,7 +101,7 @@ curl -fsSL https://raw.githubusercontent.com/ronniedroid/getnf/master/install.sh
 ```
 Run `getnf` in the terminal and follow the prompts.
 
-## Build interception-tools 
+## Build Interception-tools 
 
 [Interception-tools](https://gitlab.com/interception/linux/tools) `caps2esc` (caps_lock is esc when tapped or ctrl when held down), `space2meta` (space key acts as meta when held down in combination with other keys) and `s2arrows`  acts as the arrow keys combining s+j,k,h,l
 
@@ -138,7 +136,7 @@ The following daemonized sample execution increases udevmon priority (since it'l
 ```
 sudo nice -n -20 udevmon -c udevmon.yaml >udevmon.log 2>udevmon.err &
 ```
-You may notice a lag typing `s` or `space` with an sdcard, but not really with an SSD. For convenience, there's a version of the file without s2arrows
+You may notice a lag typing `s` or `space` with an sdcard. For convenience, there's a version of the file without s2arrows
 
 ## Build Neovim 
 
