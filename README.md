@@ -2,11 +2,11 @@
 
 - A keyboard-centric approach to navigate the desktop efficiently on Raspberry Pi 4 & 5. 
 
-Raspberry Pi OS is based on Debian (Bookworm release).  Although on the surface it doesn't look much different, don't be fooled! It uses WayfireWM build on Wayland with wlroots under the hood. Wayland is a modern replacement for X11, which has been the default windowing system on Linux for decades. 
+Raspberry Pi OS is based on Debian (Bookworm release).  It doesn't look much different, but don't get fooled. It uses WayfireWM build on Wayland with wlroots under the hood. Wayland is a modern replacement for X11, which has been the default windowing system on Linux for decades. 
 
-Originally I used HyprlandWM. To get it to build, I had to change the software repository from `stable` to `testing` and this move is not supported. Eventually my Pi5 would not boot up anymore. However, I can get the same basic funcionality with WayfireWM. The Raspberry Pi Foundation has done the heavy lifting, and you know `stable` will be supported well into the future. Besides, this new desktop is smooth and extremely light on system resources, typically only requiring 2Gb ram for light editing tasks. Unlock the power and versatility of plugins and commands with a customized `~/.config/wayfire.ini`. Actually most of the plugins are already included with the official OS.
+Originally I used HyprlandWM on the Pi5. To build it, I had to change the software repository from `stable` to `testing` and this move is not supported. Eventually it would not boot up. However, I get the same basic functions with WayfireWM. The Raspberry Pi Foundation did the heavy lifting to provide this deceptively simple desktop (and `stable` is supported well into the foreseeable future). It results in a smooth DE, extremely light on system resources (typically only requiring 2Gb ram). You can unlock the power of the plugins and commands with a customized `~/.config/wayfire.ini`. Actually most of the plugins are already included with the official OS, they just need to be configured.
 
-The following binaries will make the shortcuts sweeter still:
+The following binaries make the shortcuts sweeter still:
 - [space2meta](https://gitlab.com/interception/linux/plugins/space2meta): _turn your space key into the meta key when chorded to another key (on key release only)_
 - [caps2esc](https://gitlab.com/interception/linux/plugins/caps2esc): _transforming the most useless key ever in the most useful one_ and 
 
@@ -96,7 +96,7 @@ Ensure .zshenv contains. Edit: this step may not be necessary.
 ```
 export ZDOTDIR=$HOME/.config/zsh
 ```
-Reopen the shell, `zap update` will automatically install the plugins. 
+Reopen the shell, `zap update` automatically installs the plugins. 
 
 ## Get Nerdfonts
 https://github.com/getnf/getnf
@@ -172,7 +172,7 @@ sudo rm /usr/local/bin/nvim
 sudo rm -r /usr/local/share/nvim/
 ```
 
-Later when you want to upgrade, go back into the neovim directory (wherever it's stashed). Assuming you're on the branch you want, this will rebuild from scratch and replace the current build.
+Later when you want to upgrade, go back into the neovim directory (wherever it's stashed). Assuming you're on the branch you want, to rebuild from scratch and replace the current build:
 
 ```
 git pull
