@@ -74,7 +74,6 @@ alias nr='nvim ~/.config/ranger/rc.conf'
 alias nu='nvim ~/.config/newsboat/urls'
 alias nw='nvim ~/.config/nvim/lua/user/whichkey.lua'
 alias nW='nvim ~/.w3m/config'
-alias nz='nvim ~/.zshrc'
 alias syn="syncthing &"
 alias sn='sudo nvim'
 #alias sn='sudo nvim -u ~/.config/nvim/init.lua'

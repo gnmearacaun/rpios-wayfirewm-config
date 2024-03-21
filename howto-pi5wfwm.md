@@ -4,5 +4,5 @@ The Wayfire Wiki https://github.com/WayfireWM/wayfire/wiki links an example wayf
 
 Available keys for mapping: https://github.com/alexherbo2/wayfire-resources/blob/453eee535c409e9502ac9dbd28d9867453f9789d/docs/keys.txt 
 
-Certain plugins work ootb when listed in your plugins. No further configuration is necessary (however some don't seem to function on the Pi): https://github.com/WayfireWM/wayfire/wiki/Bindings-available-by-default
+Certain plugins work ootb when listed in your plugins. No further configuration is necessary. There is a list of default keybindings: https://github.com/WayfireWM/wayfire/wiki/Bindings-available-by-default (however some don't seem to function on the Pi).
 

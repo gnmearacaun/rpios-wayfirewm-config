@@ -34,7 +34,7 @@ BOOT_ORDER=0xf416
  
 ```
 sudo apt-get update
-sudo apt-get install aptitude ranger zsh ripgrep fd-find fzf vim-gtk3 alacritty cmake ninja-build interception-caps2esc interception-tools interception-compat wf-recorder timeshift wl-clipboard obs-studio slurp 
+sudo apt-get install aptitude ranger zsh ripgrep fd-find fzf vim-gtk3 wl-clipboard swaybg slurp alacritty cmake ninja-build interception-caps2esc interception-tools interception-compat wf-recorder timeshift obs-studio redshift wofi mako-notifier clipman kanshi 
 ```
 - My process to record the video was to reboot (with camera and mic plugged in). The following augmented command is needed to run obs-studio (recording software):
 ```
@@ -46,16 +46,19 @@ git clone https://github.com/gnmearacaun/rpios-wayfirewm.git
 ```
 ## Put The Configs In Place
 
-Put `wayfire.ini` and the other folders into `~/.config` and `/etc` respectively. 
+Put `wayfire.ini` and `zsh` into `~/.config` and move `interception` into `/etc`. 
 
-
+```
+mv -i wayfire.ini zsh ~/.config 
+sudo mv interception /etc
+```
 - Now you can move around using Super+{a,s,f,w,b,h,j,k,l,<Tab>} and create tiles out of windows with <Alt>+{h,j,k,l}
 
-- These configs contain custom aliases and keybindings.
+- Note: When you edit wayfire.ini, you normally are automatically logged out. If not you can use `Ctrl-Alt-Backspace` to logout/login and test your edits.
 
 - Customize lxterminal & taskbar, darken theme.
 
-- Note: When you edit wayfire.ini, you normally are automatically logged out. If not you can use `Ctrl-Alt-Backspace` to logout/login and test your edits.
+- My `zsh` and `nvim` (linked below) contain custom aliases and keybindings.
 
 ## A Minimal Vim Configuration 
 
@@ -171,14 +174,16 @@ Alternatively, just delete the CMAKE_INSTALL_PREFIX artifacts:
 sudo rm /usr/local/bin/nvim
 sudo rm -r /usr/local/share/nvim/
 ```
-
-Later when you want to upgrade, go back into the neovim directory (wherever it's stashed). Assuming you're on the branch you want, to rebuild from scratch and replace the current build:
+- Drop your neovim configuration into `~/.config`, or feel free to use mine
 
 ```
-git pull
-sudo make distclean && make CMAKE_BUILD_TYPE=Release
-cd build && sudo cpack -G DEB && sudo dpkg -i nvim-linux64.deb
-nvim -V1 -v
+https://github.com/gnmearacaun/nvim-launch.git
+```
+- Troubleshooting: Mason was not showing up in Neovim at first (throwing errors).
+I had to: 
+
+```
+:Lazy reload mason.nvim
 ```
 
 ## Install nodejs 
@@ -191,10 +196,14 @@ apt-get install -y nodejs
 install a node version manager (optional) from https://www.chiarulli.me/Nodejs/02-Install-FNM/
 curl -fsSL https://fnm.vercel.app/install | bash -s -- --install-dir $HOME/.local/bin
 ```
-## Troubleshooting
 
-Mason was not showing up in neovim and throwing some errors
-I had to run 
+## Upgrading Neovim
+
+Later when you want to upgrade, go back into the neovim directory (wherever it's stashed). Assuming you're on the branch you want, to rebuild from scratch and replace the current build:
+
 ```
-:Lazy reload mason.nvim
+git pull
+sudo make distclean && make CMAKE_BUILD_TYPE=Release
+cd build && sudo cpack -G DEB && sudo dpkg -i nvim-linux64.deb
+nvim -V1 -v
 ```
