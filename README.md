@@ -1,4 +1,4 @@
-# rpios-wayfirewm
+# Rpios-wayfirewm
 
 - A keyboard-centric approach to navigate the desktop efficiently on Raspberry Pi 4 & 5. 
 
@@ -12,7 +12,7 @@ You can unlock the power of the plugins and commands with a customized `~/.confi
 
 - This repo has an accompanying video [TBA](https://example.com) 
 
-## Preparing The Ground 
+## Preparing the ground 
 
 - Reset SSD to factory settings if it's badly worn. Ignore if using an sdcard.
 ```
@@ -28,8 +28,7 @@ BOOT_ORDER=0xf416
 
 - Reboot and follow the RPiOS setup wizard.
 
-## Now the Good Part
-
+## Now the good bits
 - Install some packages we can use straight away
  
 ```
@@ -40,11 +39,11 @@ sudo apt-get install aptitude ranger zsh ripgrep fd-find fzf vim-gtk3 wl-clipboa
 ```
 MESA_GL_VERSION_OVERRIDE=3.3 obs
 ```
-## Clone _This_ Repo
+## Clone _this_ repo
 ```
 git clone https://github.com/gnmearacaun/rpios-wayfirewm.git
 ```
-## Put The Configs In Place
+## Put the configs into place
 
 Put `wayfire.ini` and `zsh` into `~/.config` and move `interception` into `/etc`. 
 
@@ -60,7 +59,7 @@ sudo mv interception /etc
 
 - My `zsh` and `nvim` (linked below) contain custom aliases and keybindings.
 
-## A Minimal Vim Configuration 
+## A minimal Vim configuration 
 
 - The package vim-gtk3 has better clipboard support than plain old Vim itself. Wayland users need `wl-clipboard` (installed above). 
 
@@ -72,7 +71,7 @@ mkdir -p ~/.vim && cd ~/.vim
 git clone https://github.com/jdhao/minimal_vim.git .
 mv ~/.vimrc ~/.vimrc.bak
 ```
-## Install Debian Package-list 
+## Install Debian package-list 
 
 - Some selections (can be downloading while we work).
 
@@ -85,7 +84,7 @@ To show if any didn't get installed
 ```
 cut -f1 -d' ' packages.txt | xargs dpkg -l
 ```
-## Install Zsh and [Zap](https://www.zapzsh.com/) 
+## Install zsh and [zap](https://www.zapzsh.com/) 
 
 To set zsh as your default shell, execute the following.
 ```
@@ -101,14 +100,14 @@ export ZDOTDIR=$HOME/.config/zsh
 ```
 Reopen the shell, `zap update` automatically installs the plugins. 
 
-## Get Nerdfonts
+## Get nerdfonts
 https://github.com/getnf/getnf
 ```
 curl -fsSL https://raw.githubusercontent.com/ronniedroid/getnf/master/install.sh | bash
 ```
 Run `getnf` in the terminal and follow the prompts.
 
-## Build Interception-tools 
+## Build interception-tools 
 
 [Interception-tools](https://gitlab.com/interception/linux/tools) `caps2esc` (caps_lock is esc when tapped or ctrl when held down), `space2meta` (space key acts as meta when held down in combination with other keys) and `s2arrows`  acts as the arrow keys combining s+j,k,h,l
 
@@ -164,17 +163,9 @@ make CMAKE_BUILD_TYPE=Release
 cd build && sudo cpack -G DEB && sudo dpkg -i nvim-linux64.deb
 nvim -V1 -v
 ```
-If you have previously built the image and want to switch branches, do this first
-```
-cd neovim && sudo cmake --build build/ --target uninstall
-```
+## A modern Neovim config
 
-Alternatively, just delete the CMAKE_INSTALL_PREFIX artifacts:
-```
-sudo rm /usr/local/bin/nvim
-sudo rm -r /usr/local/share/nvim/
-```
-- Drop your neovim configuration into `~/.config`, or feel free to use mine
+If you don't already have an `nvim` directory to drop into `~/.config`, feel free to use mine
 
 ```
 https://github.com/gnmearacaun/nvim-launch.git
@@ -195,6 +186,18 @@ curl -fsSL https://deb.nodesource.com/setup_21.x | bash - &&\
 apt-get install -y nodejs
 install a node version manager (optional) from https://www.chiarulli.me/Nodejs/02-Install-FNM/
 curl -fsSL https://fnm.vercel.app/install | bash -s -- --install-dir $HOME/.local/bin
+```
+## Rebuilding Neovim
+
+If you have previously built the image and want to switch branches, do this first
+```
+cd neovim && sudo cmake --build build/ --target uninstall
+```
+
+Alternatively, just delete the CMAKE_INSTALL_PREFIX artifacts:
+```
+sudo rm /usr/local/bin/nvim
+sudo rm -r /usr/local/share/nvim/
 ```
 
 ## Upgrading Neovim
