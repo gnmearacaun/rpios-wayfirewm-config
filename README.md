@@ -4,11 +4,11 @@
 
 Raspberry Pi OS is based on Debian (Bookworm release).  It doesn't look much different, but don't get fooled. It uses WayfireWM build on Wayland with wlroots under the hood. Wayland is a modern replacement for X11, which has been the default windowing system on Linux for decades. 
 
-Originally I used HyprlandWM on the Pi5. To build it, I had to change the software repository from `stable` to `testing` and this move is not supported. Eventually it would not boot up. However, I get the same basic functions with WayfireWM. The Raspberry Pi Foundation did the heavy lifting to provide this deceptively simple desktop (and `stable` is supported well into the foreseeable future). It results in a smooth DE, extremely light on system resources (typically only requiring 2Gb ram). You can unlock the power of the plugins and commands with a customized `~/.config/wayfire.ini`. Actually most of the plugins are already included with the official OS, they just need to be configured.
+Originally I used HyprlandWM on the Pi5. To build it, I had to change the software repository from `stable` to `testing` and this move is not supported. Eventually it would not boot up. However, I get the same basic functions with WayfireWM. The Raspberry Pi Foundation did the heavy lifting to provide this deceptively simple desktop (and `stable` is supported well into the foreseeable future). The result is a smooth DE, extremely light on system resources (typically only requiring 2Gb ram). 
 
-The following binaries make the shortcuts sweeter still:
+You can unlock the power of the plugins and commands with a customized `~/.config/wayfire.ini`. Actually most of the plugins are already included with the official OS, they just need to be configured. The following binaries make the shortcuts sweeter still:
 - [space2meta](https://gitlab.com/interception/linux/plugins/space2meta): _turn your space key into the meta key when chorded to another key (on key release only)_
-- [caps2esc](https://gitlab.com/interception/linux/plugins/caps2esc): _transforming the most useless key ever in the most useful one_ and 
+- [caps2esc](https://gitlab.com/interception/linux/plugins/caps2esc): _transforming the most useless key ever in the most useful one_ 
 
 - This repo has an accompanying video [TBA](https://example.com) 
 
