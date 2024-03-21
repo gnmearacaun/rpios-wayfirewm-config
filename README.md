@@ -4,11 +4,9 @@
 
 Raspberry Pi OS is based on Debian (Bookworm release).  Although on the surface it doesn't look much different, don't be fooled! It uses WayfireWM build on Wayland with wlroots under the hood. Wayland is a modern replacement for X11, which has been the default windowing system on Linux for decades. 
 
-Originally I used HyprlandWM. To get it to build, I had to change the software repository from `stable` to `testing` and this move is not supported. Eventually my Pi5 would not boot up anymore. However, I can get the same basic funcionality with WayfireWM. The Raspberry Pi Foundation has done the heavy lifting, and you know `stable` will be supported well into the future. Besides, this new desktop is smooth and extremely light on system resources, typically only requiring 2Gb ram for light editing tasks. 
+Originally I used HyprlandWM. To get it to build, I had to change the software repository from `stable` to `testing` and this move is not supported. Eventually my Pi5 would not boot up anymore. However, I can get the same basic funcionality with WayfireWM. The Raspberry Pi Foundation has done the heavy lifting, and you know `stable` will be supported well into the future. Besides, this new desktop is smooth and extremely light on system resources, typically only requiring 2Gb ram for light editing tasks. Unlock the power and versatility of plugins and commands with a customized `~/.config/wayfire.ini`. Actually most of the plugins are already included with the official OS.
 
-WayfireWM has some [default shortcuts](https://github.com/WayfireWM/wayfire/wiki/Bindings-available-by-default), however you can unlock the power and versatility of plugins and commands with a customized `~/.config/wayfire.ini`. Actually most of the plugins are already included with the official OS.
-
-The following binaries will make the shortcuts, sweeter still:
+The following binaries will make the shortcuts sweeter still:
 - [space2meta](https://gitlab.com/interception/linux/plugins/space2meta): _turn your space key into the meta key when chorded to another key (on key release only)_
 - [caps2esc](https://gitlab.com/interception/linux/plugins/caps2esc): _transforming the most useless key ever in the most useful one_ and 
 
