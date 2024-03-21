@@ -39,11 +39,11 @@ sudo apt-get install aptitude ranger zsh ripgrep fd-find fzf vim-gtk3 wl-clipboa
 ```
 MESA_GL_VERSION_OVERRIDE=3.3 obs
 ```
-## Clone _this_ repo
+### Clone _this_ repo
 ```
 git clone https://github.com/gnmearacaun/rpios-wayfirewm.git
 ```
-## Put the configs into place
+### Put the configs into place
 
 Put `wayfire.ini` and `zsh` into `~/.config` and move `interception` into `/etc`. 
 
@@ -59,7 +59,7 @@ sudo mv interception /etc
 
 - My `zsh` and `nvim` (linked below) contain custom aliases and keybindings.
 
-## A minimal Vim configuration 
+### A minimal Vim configuration 
 
 - The package vim-gtk3 has better clipboard support than plain old Vim itself. Wayland users need `wl-clipboard` (installed above). 
 
@@ -71,7 +71,7 @@ mkdir -p ~/.vim && cd ~/.vim
 git clone https://github.com/jdhao/minimal_vim.git .
 mv ~/.vimrc ~/.vimrc.bak
 ```
-## Install Debian package-list 
+### Install Debian package-list 
 
 - Some selections (can be downloading while we work).
 
@@ -84,7 +84,7 @@ To show if any didn't get installed
 ```
 cut -f1 -d' ' packages.txt | xargs dpkg -l
 ```
-## Install zsh and [zap](https://www.zapzsh.com/) 
+### Install zsh and [zap](https://www.zapzsh.com/) 
 
 To set zsh as your default shell, execute the following.
 ```
@@ -100,14 +100,14 @@ export ZDOTDIR=$HOME/.config/zsh
 ```
 Reopen the shell, `zap update` automatically installs the plugins. 
 
-## Get nerdfonts
+### Get nerdfonts
 https://github.com/getnf/getnf
 ```
 curl -fsSL https://raw.githubusercontent.com/ronniedroid/getnf/master/install.sh | bash
 ```
 Run `getnf` in the terminal and follow the prompts.
 
-## Build interception-tools 
+### Build interception-tools 
 
 [Interception-tools](https://gitlab.com/interception/linux/tools) `caps2esc` (caps_lock is esc when tapped or ctrl when held down), `space2meta` (space key acts as meta when held down in combination with other keys) and `s2arrows`  acts as the arrow keys combining s+j,k,h,l
 
@@ -144,13 +144,12 @@ sudo nice -n -20 udevmon -c udevmon.yaml >udevmon.log 2>udevmon.err &
 ```
 You may notice a lag typing `s` or `space` with an sdcard. For convenience, there's a version of the udevmon.yaml without s2arrows if you prefer it.
 
-## Build Neovim 
+### Build Neovim 
 
 Neovim is improving rapidly. To take advantage of recent developments in the plugins infrastructure we need a newer version of Neovim than Bookworm repositories are offering.  
 
 - Note `CMAKE_BUILD_TYPE=RelWithDebInfo` would make a build with Debug info. `Release` runs a bit lighter.
 
-- My neovim config is based on https://github.com/ChristianChiarulli/nvim. 
 
 - `git checkout nightly` for bleeding edge
 
@@ -163,20 +162,17 @@ make CMAKE_BUILD_TYPE=Release
 cd build && sudo cpack -G DEB && sudo dpkg -i nvim-linux64.deb
 nvim -V1 -v
 ```
-## A modern Neovim config
 
-If you don't already have an `nvim` directory to drop into `~/.config`, feel free to use mine
+If you don't already have an `nvim` directory to drop into `~/.config`, feel free to use mine. My neovim config is based on https://github.com/ChristianChiarulli/nvim BDFL of Lunarvim.
 
 ```
 https://github.com/gnmearacaun/nvim-launch.git
 ```
-- Troubleshooting: Mason was not showing up in Neovim at first (throwing errors).
-I had to: 
-
+- Troubleshooting: Mason was not showing up at first (throwing errors).
+From the nvim commandline:
 ```
 :Lazy reload mason.nvim
 ```
-
 ## Install nodejs 
 
 I'm using [nodesource](https://github.com/nodesource/distributions). Run as root:
@@ -189,7 +185,7 @@ curl -fsSL https://fnm.vercel.app/install | bash -s -- --install-dir $HOME/.loca
 ```
 ## Rebuilding Neovim
 
-If you have previously built the image and want to switch branches, do this first
+In case you have previously built the image and want to switch branches or use on another installation, do this:
 ```
 cd neovim && sudo cmake --build build/ --target uninstall
 ```
