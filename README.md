@@ -1,12 +1,17 @@
 # rpios-wayfirewm
 
-- A keyboard-centric approach to navigating the desktop efficiently on Raspberry Pi 4 & 5. A smooth desktop experience which is extremely light on system resources, typically using only 2Gb ram. 
+- A keyboard-centric approach to navigate the desktop efficiently on Raspberry Pi 4 & 5. 
 
-The default Operating System for Raspberry Pi (Bookworm edition) uses WayfireWM build on Wayland with wlroots. Wayland is a modern replacement for X11, which has been the default windowing system on Linux for decades. However, the inherent power only becomes apparent when plugins and commands are specified in the `~/.config/wayfire.ini`. You will quickly be traversing the grid of nine default workspaces. Shortcuts are augmented by:
-- [caps2esc](https://gitlab.com/interception/linux/plugins/caps2esc): _transforming the most useless key ever in the most useful one_ and 
+Raspberry Pi OS is based on Debian (Bookworm release).  Although on the surface it doesn't look much different, don't be fooled! It uses WayfireWM build on Wayland with wlroots under the hood. Wayland is a modern replacement for X11, which has been the default windowing system on Linux for decades. 
+
+Originally I used HyprlandWM. To get it to build, I had to change the software repository from `stable` to `testing` and this move is not supported. Eventually my Pi5 would not boot up anymore. However, I can get the same basic funcionality with WayfireWM. The Raspberry Pi Foundation has done the heavy lifting, and you know `stable` will be supported well into the future. Besides, this new desktop is smooth and extremely light on system resources, typically only requiring 2Gb ram for light editing tasks. 
+
+WayfireWM has some [default shortcuts](https://github.com/WayfireWM/wayfire/wiki/Bindings-available-by-default), however you can unlock the power and versatility of plugins and commands with a customized `~/.config/wayfire.ini`. Actually most of the plugins are already included with the official OS.
+
+The following binaries will make the shortcuts, sweeter still:
 - [space2meta](https://gitlab.com/interception/linux/plugins/space2meta): _turn your space key into the meta key when chorded to another key (on key release only)_
+- [caps2esc](https://gitlab.com/interception/linux/plugins/caps2esc): _transforming the most useless key ever in the most useful one_ and 
 
-- These are my personal configs and contain custom aliases and keybindings.
 - This repo has an accompanying video [TBA](https://example.com) 
 
 ## Preparing The Ground 
@@ -15,25 +20,25 @@ The default Operating System for Raspberry Pi (Bookworm edition) uses WayfireWM 
 ```
 sudo nvme format -s1 -lb=0 /dev/nvme0n1
 ```
-- Flash Raspberry Pi OS onto your SSD/sdcard with `rpi-imagers`s
- 
 - Change `BOOT_ORDER` line in order to boot from an SSD (I started with an sdcard). BOOT_ORDER options read from right to left, with 6 representing the nvme drive, 1 is sdcard and 4 is USB boot) 
 
 ```
 sudo rpi-eeprom-config --edit
 BOOT_ORDER=0xf416
 ```
+- Flash Raspberry Pi OS onto your SSD/sdcard with `rpi-imagers`s
+
 - Reboot and follow the RPiOS setup wizard.
 
-## Now the Good Stuff
+## Now the Good Part
 
 - Install some packages we can use straight away
  
 ```
 sudo apt-get update
-sudo apt-get install aptitude ranger zsh ripgrep fd-find fzf vim-gtk3 alacritty cmake ninja-build interception-caps2esc interception-tools interception-compat wf-recorder timeshift wl-clipboard obs-studio slurp swaybg  
+sudo apt-get install aptitude ranger zsh ripgrep fd-find fzf vim-gtk3 alacritty cmake ninja-build interception-caps2esc interception-tools interception-compat wf-recorder timeshift wl-clipboard obs-studio slurp 
 ```
-- My process in video-recording was to reboot (with camera and mic plugged in) with the following command to run obs:
+- My process to record the video was to reboot (with camera and mic plugged in). The following augmented command is needed to run obs-studio (recording software):
 ```
 MESA_GL_VERSION_OVERRIDE=3.3 obs
 ```
@@ -41,19 +46,34 @@ MESA_GL_VERSION_OVERRIDE=3.3 obs
 ```
 git clone https://github.com/gnmearacaun/rpios-wayfirewm.git
 ```
-## Place The Configs
+## Put The Configs In Place
 
-Put `wayfire.ini` and any of the other configuration files and folders you want into `home` and `.config` respectively. Assuming you're familiar with Linux, the files and folders are named in such a way as to indicate where they should end up. If it's not obvious, open an [issue](https://github.com/gnmearacaun/rpios-wayfirewm/issues). 
+Put `wayfire.ini` and the other folders into `~/.config` and `/etc` respectively. 
 
-- Now you can move around using Super+{a,s,f,w,b,h,j,k,l,<Tab>} and make tiles with <Alt>+{h,j,k,l}
 
-- Note: When you edit wayfire.ini, you may get automatically logged out. If not you can use `Ctrl-Alt-Backspace` to logout and test your edits.
+- Now you can move around using Super+{a,s,f,w,b,h,j,k,l,<Tab>} and create tiles out of windows with <Alt>+{h,j,k,l}
+
+- These configs contain custom aliases and keybindings.
 
 - Customize lxterminal & taskbar, darken theme.
 
-## Install Debian package-list 
+- Note: When you edit wayfire.ini, you normally are automatically logged out. If not you can use `Ctrl-Alt-Backspace` to logout/login and test your edits.
 
-Some personal selections
+## A Minimal Vim Configuration 
+
+- The package vim-gtk3 has better clipboard support than plain old Vim itself. Wayland users need `wl-clipboard` (installed above). 
+
+I install the following config by [jdhao](https://github.com/jdhao) just for setting up the desktop, until neovim is built.
+
+```
+mv ~/.vimrc ~/.vimrc.bak
+mkdir -p ~/.vim && cd ~/.vim
+git clone https://github.com/jdhao/minimal_vim.git .
+mv ~/.vimrc ~/.vimrc.bak
+```
+## Install Debian Package-list 
+
+- Some selections (can be downloading while we work).
 
 ```
 sudo apt-get install dselect --yes
@@ -64,35 +84,21 @@ To show if any didn't get installed
 ```
 cut -f1 -d' ' packages.txt | xargs dpkg -l
 ```
-## A Minimal Vim Configuration 
-
-- Because `vim` makes files shine 
-
-- The package vim-gtk3 has better clipboard support than plain old Vim itself. Wayland users need `wl-clipboard` (installed above). This vim config is based on https://github.com/nvim-zh/minimal_vim by the incomparable [jdhao](https://github.com/jdhao)
-
-To avoid default conf interfering with this conf, do this:
-```
-mv ~/.vimrc ~/.vimrc.bak
-```
-and move the contents of the `home.vim` folder to `~/.vim/`
-
 ## Install Zsh and [Zap](https://www.zapzsh.com/) 
 
 To set zsh as your default shell, execute the following.
 ```
 sudo sh -c "echo $(which zsh) >> /etc/shells" && chsh -s $(which zsh)
 ```
-- Or change shell with: `sudo chsh -s $(which zsh) $USER`
-
 Install [zap](https://github.com/zap-zsh/zap) zsh plugin manager
 ```
 zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1
 ```
-Ensure .zshenv contains
+Ensure .zshenv contains. Edit: this step may not be necessary. 
 ```
 export ZDOTDIR=$HOME/.config/zsh
 ```
-Reopen the shell, `zap update` will automatically install the plugins before your eyes. 
+Reopen the shell, `zap update` will automatically install the plugins. 
 
 ## Get Nerdfonts
 https://github.com/getnf/getnf
@@ -136,11 +142,11 @@ The following daemonized sample execution increases udevmon priority (since it'l
 ```
 sudo nice -n -20 udevmon -c udevmon.yaml >udevmon.log 2>udevmon.err &
 ```
-You may notice a lag typing `s` or `space` with an sdcard. For convenience, there's a version of the file without s2arrows
+You may notice a lag typing `s` or `space` with an sdcard. For convenience, there's a version of the udevmon.yaml without s2arrows if you prefer it.
 
 ## Build Neovim 
 
-To take advantage of recent developments in the plugins infrastructure you may want a newer version of Neovim than Bookworm repositories are offering in `stable`. 
+Neovim is improving rapidly. To take advantage of recent developments in the plugins infrastructure we need a newer version of Neovim than Bookworm repositories are offering.  
 
 - Note `CMAKE_BUILD_TYPE=RelWithDebInfo` would make a build with Debug info. `Release` runs a bit lighter.
 
