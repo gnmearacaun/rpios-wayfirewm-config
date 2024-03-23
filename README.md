@@ -1,12 +1,12 @@
 # Rpios-wayfirewm
 
-- A keyboard-centric approach to navigate the desktop efficiently on Raspberry Pi 4 & 5. 
+- A keyboard-centric configuration for Raspberry Pi 4 & 5. 
  
-Raspberry Pi OS is based on Debian (Bookworm release).  It doesn't look much different, but don't get fooled. It uses WayfireWM build on Wayland with wlroots under the hood. Wayland is a modern replacement for X11, which has been the default windowing system on Linux for decades. 
+Raspberry Pi OS is based on Debian (Bookworm release).  It looks no different, but don't be fooled, this release is underpinned by Wayland and WayfireWM . Wayland is the modern replacement for X11 (the default windowing system on Linux for decades). 
 
-Originally I used HyprlandWM on the Pi5. To build it, I had to change the software repository from `stable` to `testing` and this move is not supported. Eventually it would not boot up. However, I get the same basic functions with WayfireWM. The Raspberry Pi Foundation did the heavy lifting to provide this deceptively simple desktop (and `stable` is supported well into the foreseeable future). The result is a smooth DE, extremely light on system resources (typically only requiring 2Gb ram). 
+I originally set up HyprlandWM on the Pi5. To get it to build, I had to change the software repository from `stable` to `testing`, a manoeuver that is not officially supported. Eventually it would not boot up anymore. However, I get the same basic functionality with WayfireWM. The Raspberry Pi Foundation has done the heavy lifting to provide a deceptively simple desktop. The result is a smooth DE, extremely light on system resources typically requiring <2Gb ram. 
 
-You can unlock the power of the plugins and commands with a customized `~/.config/wayfire.ini`. Actually most of the plugins are already included with the official OS, they just need to be configured. The following binaries make the shortcuts sweeter still:
+RPiOS comes with little configuration ootb. To unlock the inherent potential power of the plugins and commands, one must customize `~/.config/wayfire.ini`. Actually most of the plugins are already included with the official OS. Some need configuration, others just need to be included in the list of plugins. The following binaries make it that much easier to navigate the desktop:
 - [space2meta](https://gitlab.com/interception/linux/plugins/space2meta): _turn your space key into the meta key when chorded to another key (on key release only)_
 - [caps2esc](https://gitlab.com/interception/linux/plugins/caps2esc): _transforming the most useless key ever in the most useful one_ 
 - 
@@ -57,8 +57,6 @@ sudo mv interception /etc
 - Customize lxterminal & taskbar, darken theme.
 
 - Note: When you edit wayfire.ini, you are automatically logged out. If not, you can use `Ctrl-Alt-Backspace` to logout/login and test your edits.
-
-- Plugins listed in [core] are enabled whether or not you have specified any options.
 
 - My `zsh` and `nvim` (linked below) contain custom aliases and keybindings.
 
