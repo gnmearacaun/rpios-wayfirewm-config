@@ -11,8 +11,9 @@ conky-all					install
 cowsay						install
 curl						install
 delta						install
+ddcutil          install
 discord						install
-disk-manager					deinstall
+disk-manager					install
 dolphin						install
 ebook-speaker					install
 element-desktop					install

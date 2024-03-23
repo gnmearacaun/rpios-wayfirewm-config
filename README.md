@@ -1,7 +1,7 @@
 # Rpios-wayfirewm
 
 - A keyboard-centric approach to navigate the desktop efficiently on Raspberry Pi 4 & 5. 
-
+ 
 Raspberry Pi OS is based on Debian (Bookworm release).  It doesn't look much different, but don't get fooled. It uses WayfireWM build on Wayland with wlroots under the hood. Wayland is a modern replacement for X11, which has been the default windowing system on Linux for decades. 
 
 Originally I used HyprlandWM on the Pi5. To build it, I had to change the software repository from `stable` to `testing` and this move is not supported. Eventually it would not boot up. However, I get the same basic functions with WayfireWM. The Raspberry Pi Foundation did the heavy lifting to provide this deceptively simple desktop (and `stable` is supported well into the foreseeable future). The result is a smooth DE, extremely light on system resources (typically only requiring 2Gb ram). 
@@ -9,12 +9,13 @@ Originally I used HyprlandWM on the Pi5. To build it, I had to change the softwa
 You can unlock the power of the plugins and commands with a customized `~/.config/wayfire.ini`. Actually most of the plugins are already included with the official OS, they just need to be configured. The following binaries make the shortcuts sweeter still:
 - [space2meta](https://gitlab.com/interception/linux/plugins/space2meta): _turn your space key into the meta key when chorded to another key (on key release only)_
 - [caps2esc](https://gitlab.com/interception/linux/plugins/caps2esc): _transforming the most useless key ever in the most useful one_ 
+- 
 
 - This repo has an accompanying video [TBA](https://example.com) 
 
 ## Preparing the ground 
 
-- Reset SSD to factory settings if it's badly worn. Ignore if using an sdcard.
+- Reset SSD to factory settings if it's not new. Ignore if using an sdcard.
 ```
 sudo nvme format -s1 -lb=0 /dev/nvme0n1
 ```
@@ -33,7 +34,7 @@ BOOT_ORDER=0xf416
  
 ```
 sudo apt-get update
-sudo apt-get install aptitude ranger zsh ripgrep fd-find fzf vim-gtk3 wl-clipboard swaybg slurp alacritty cmake ninja-build interception-caps2esc interception-tools interception-compat wf-recorder timeshift obs-studio redshift wofi mako-notifier clipman kanshi 
+sudo apt-get install aptitude ranger zsh ripgrep fd-find fzf vim-gtk3 wl-clipboard swaybg slurp alacritty cmake ninja-build interception-caps2esc interception-tools wf-recorder timeshift obs-studio redshift wofi mako-notifier clipman kanshi 
 ```
 - My process to record the video was to reboot (with camera and mic plugged in). The following augmented command is needed to run obs-studio (recording software):
 ```
@@ -53,9 +54,11 @@ sudo mv interception /etc
 ```
 - Now you can move around using Super+{a,s,f,w,b,h,j,k,l,<Tab>} and create tiles out of windows with <Alt>+{h,j,k,l}
 
-- Note: When you edit wayfire.ini, you normally are automatically logged out. If not you can use `Ctrl-Alt-Backspace` to logout/login and test your edits.
-
 - Customize lxterminal & taskbar, darken theme.
+
+- Note: When you edit wayfire.ini, you are automatically logged out. If not, you can use `Ctrl-Alt-Backspace` to logout/login and test your edits.
+
+- Plugins listed in [core] are enabled whether or not you have specified any options.
 
 - My `zsh` and `nvim` (linked below) contain custom aliases and keybindings.
 
