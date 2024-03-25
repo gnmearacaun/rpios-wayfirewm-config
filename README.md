@@ -12,7 +12,7 @@ RPiOS comes with little configuration ootb. To unlock the inherent potential pow
 
 - This repo has an accompanying video [TBA](https://example.com) 
 
-## Preparing the ground 
+### _Prepare the ground_ 
 
 - Reset SSD to factory settings if it's not new. Ignore if using an sdcard.
 ```
@@ -48,7 +48,7 @@ Log out and back in.
 
 - Now you can move around the windows and workspaces using Super+{a,s,f,w,b,h,j,k,l,<Tab>} and create tiles out of windows with <Alt>+{h,j,k,l}
 
-## RPiOS setup checklist
+### RPiOS checklist
 
 - Customize lxterminal & taskbar, darken theme.
 
@@ -73,21 +73,13 @@ mkdir -p ~/.vim && cd ~/.vim
 git clone https://github.com/jdhao/minimal_vim.git .
 cd && sudo cp -r .vim /root
 ```
-- Add the following line to your `init.vim` to yank to `wl-clipboard`. (`<leader>` is the `<spacebar>`:
+- Add the following line to your `init.vim` to yank to `wl-clipboard`. `<leader>` is set to the `<spacebar>`
 
-`xnoremap <silent> <leader>y y:call system("wl-copy --trim-newline", @*)<cr>:call system("wl-copy -p --trim-newline", @*)<cr>`
-
-- Note: When you edit wayfire.ini, you are automatically logged out. If not, you can use `Ctrl-Alt-Backspace` to logout/login and test your edits.
-
-### Debian extra packages
-
-- A curated list of optional extras
 ```
-sudo apt-get install dselect --yes
-sudo dpkg --set-selections < "packages.txt"
-/usr/lib/dpkg/methods/apt/update /var/lib/dpkg/
-sudo apt-get dselect-upgrade -y
+xnoremap <silent> <leader>y y:call system("wl-copy --trim-newline", @*)<cr>:call system("wl-copy -p --trim-newline", @*)<cr>
 ```
+
+- Note: When you edit wayfire.ini, you are automatically logged out. If not, you can use `Ctrl-Alt-Backspace` to logout/login and test your edits. If for whatever reason your desktop freezes, log into another `tty` with `Ctrl+Alt+F2` and `reboot` 
 
 ### Install zsh and [zap](https://www.zapzsh.com/) 
 
@@ -177,7 +169,7 @@ https://github.com/gnmearacaun/nvim-launch.git
 ```
 :Lazy reload mason.nvim
 ```
-## Install nodejs 
+### Install nodejs 
 
 I'm using [nodesource](https://github.com/nodesource/distributions). Run as root:
 ```
@@ -186,6 +178,15 @@ curl -fsSL https://deb.nodesource.com/setup_21.x | bash - &&\
 apt-get install -y nodejs
 ```
 ## Extras
+### Debian packages
+
+- A curated list of optional programs
+```
+sudo apt-get install dselect --yes
+sudo dpkg --set-selections < "packages.txt"
+/usr/lib/dpkg/methods/apt/update /var/lib/dpkg/
+sudo apt-get dselect-upgrade -y
+```
 
 ### Rebuilding Neovim
 
