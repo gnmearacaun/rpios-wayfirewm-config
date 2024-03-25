@@ -1,4 +1,4 @@
-# Rpios-wayfirewm
+## Rpios-wayfirewm
 
 - A keyboard-centric configuration for Raspberry Pi 4 & 5. 
  
@@ -140,7 +140,7 @@ You may have to log out and back in to get the effect. The following command inc
 ```
 sudo nice -n -20 udevmon -c udevmon.yaml >udevmon.log 2>udevmon.err &
 ```
-You may notice a lag typing `s` or `space` with an sdcard. For convenience, there's a version of the udevmon.yaml without s2arrows if you prefer.
+You may notice a slight lag when typing `s` if you're installation is on an sdcard. If you don't want to use it rename `udevmon-without-s2arrows.yaml` to `udevmon.yaml` and copy that one over instead.
 
 ### Build Neovim 
 
