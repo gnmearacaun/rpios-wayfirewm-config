@@ -4,14 +4,13 @@ alias f='zi'
 alias g='lazygit'
 alias zup="find "$ZDOTDIR/plugins" -type d -exec test -e '{}/.git' ';' -print0 | xargs -I {} -0 git -C {} pull -q"
 alias ni='nvim ~/.config/nvim/'
-alias lvim="env TERM=wezterm lvim"
 # alias lvim='nvim -u ~/.local/share/lunarvim/lvim/init.lua --cmd "set runtimepath+=~/.local/share/lunarvim/lvim"'
+alias lvim="env TERM=wezterm lvim"
 # Colorize grep output (good for log files)
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 # confirm before overwriting something
-alias cp="cp -i"
 alias mv='mv -i'
 alias rm='rm -i'
 # easier to read disk
@@ -47,32 +46,30 @@ alias gd="cd $HOME/downloads"
 alias gL="cd $HOME/.local/share/lunarvim/lvim && ranger"
 alias gl="cd $HOME/.config/lvim/lua/user && ranger"
 alias gn="cd $HOME/.config/nvim/lua/user/ && ranger"
-alias gg="cd $HOME/.local/repos && ranger"
-alias lp="cd $HOME/.local/share/lunarvim/site/pack/packer && ranger"
-alias np="cd $HOME/.local/share/nvim/site/pack/packer && ranger"
+alias gg="cd $HOME/.local/git && ranger"
+# alias lp="cd $HOME/.local/share/lunarvim/site/pack/packer && ranger"
+# alias np="cd $HOME/.local/share/nvim/site/pack/packer && ranger"
 alias gi="cd $HOME/.config/nvim && ranger"
 alias cl="cd $HOME/.config/lvim/lua/user"
-alias gp="cd $HOME/.local/share/nvim/site/pack/packer && ranger"
+# alias gp="cd $HOME/.local/share/nvim/site/pack/packer && ranger"
 alias gr="cd $HOME/.config/ranger && ranger"
 alias gs="cd $HOME/scripts/stow && ranger"
 alias gv='cd /var'
-alias gw='cd ~/.config/hypr && ranger'
 alias gz="cd $HOME/.config/zsh && ranger"
 alias gZ="cd $HOME/.local/share/zap/plugins && ranger"
 alias scripts='cd ~/scripts'
 #alias nvim='lvim'
 alias l='lvim'
-alias li='lvim ~/.config/lvim/utils'
-alias lk='lvim ~/.config/lvim/lua/keymappings.lua'
+# alias li='lvim ~/.config/lvim/utils'
+# alias lk='lvim ~/.config/lvim/lua/keymappings.lua'
 alias n='nvim'
-alias na="nvim ~/.alias"
+alias na="nvim ~/.config/zsh/aliases.zsh"
 alias nc='nvim ~/.config/nvim/lua/user/cmp.lua'
-alias nh='nvim ~/.config/hypr/hyprland.conf'
 alias nk='nvim ~/.config/nvim/lua/user/keymaps.lua'
 alias nn='nvim ~/.config/ncmpcpp/config'
 alias nr='nvim ~/.config/ranger/rc.conf'
 alias nu='nvim ~/.config/newsboat/urls'
-alias nw='nvim ~/.config/nvim/lua/user/whichkey.lua'
+alias nw='nvim ~/.config/wayfire.ini'
 alias nW='nvim ~/.w3m/config'
 alias syn="syncthing &"
 alias sn='sudo nvim'
@@ -85,16 +82,16 @@ alias kh="kill $(ps aux | awk '/[h]ugo.*1414/ {print $2}')"
 alias kp="kcolorchooser &"
 alias nb='newsboat'
 alias lynx='rdrview -B /usr/bin/lynx'
+# alias lynx="lynx www.google.ie"
 alias rl='rdrview -B /usr/bin/lynx'
 alias w='rdrview -B /usr/bin/w3m'
 #alias w3m='rdrview -B /usr/bin/w3m'
-alias cat='batcat'
-alias b='batcat'
+alias cat='bat'
+alias b='bat'
 alias c='clear'
 alias po='sudo swapoff -a && pass open --timer=3h && sudo swapon -a'
 alias pc='sudo swapoff -a && pass close && sudo swapon -a'
 alias ri='redshift-gtk &'
-alias d='dmenu_run'
 alias p='python3'
 alias k='kill -9'
 alias fa="fortune art"
@@ -143,7 +140,6 @@ alias la='ls -a'
 alias lc='ls -CF'
 alias cl="clear; ls -CF"
 alias m="less"
-alias lynx="lynx www.google.ie"
 alias pi="ps aux | grep"
 alias zz="systemctl suspend"
 alias dir='ls -ba'

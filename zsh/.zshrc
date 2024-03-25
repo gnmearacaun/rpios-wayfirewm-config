@@ -53,7 +53,7 @@ bindkey -M vicmd 'j' history-substring-search-down
 autoload -Uz compinit
 compinit
 
-# Switch to vi command mode without [ESC] !
+# Switch to vi command mode without [ESC]
 bindkey 'kj' vi-cmd-mode
 
 # eval "$(starship init zsh)"
@@ -61,8 +61,7 @@ bindkey 'kj' vi-cmd-mode
 
 # source $HOME/config/broot/launcher/bash/br
 
-# To have your prompt indicate that you are within a shell that will return you to nnn when you are done.
-# This together with #cd on quit (Ctrl-G) becomes a powerful combination.
+# To have your prompt indicate that you are within a shell that will return you to nnn when you are done. nnn is an ncurses file manager. This together with #cd on quit (Ctrl-G) becomes a powerful combination.
 # [ -n "$NNNLVL" ] && PS1="N$NNNLVL $PS1"
 
 # if [ -f /usr/share/nnn/quitcd/quitcd.bash_zsh ]; then
@@ -70,4 +69,4 @@ bindkey 'kj' vi-cmd-mode
 # fi
 
 # fnm
-eval "`fnm env`"
+# eval "`fnm env`"

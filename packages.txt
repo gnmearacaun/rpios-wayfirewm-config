@@ -12,11 +12,8 @@ cowsay						install
 curl						install
 delta						install
 ddcutil          install
-discord						install
-disk-manager					install
 dolphin						install
 ebook-speaker					install
-element-desktop					install
 elinks						install
 eog						install
 exa						install
@@ -25,7 +22,6 @@ fdisk						install
 fdupes						install
 featherpad					install
 ffmpeg						install
-ffmpeg2theora					install
 ffmpegfs					install
 ffmpegthumbnailer				install
 ffmpegthumbs					install
@@ -42,7 +38,6 @@ fortunes-bofh-excuses				install
 fortunes-debian-hints				install
 fortunes-ga					install
 fortunes-min					install
-fortunes-off					install
 fzf						install
 fzy						install
 gdisk						install
@@ -54,7 +49,6 @@ gh						install
 ghostscript					install
 gifsicle					install
 git						install
-git-delta					install
 git-doc						install
 gitless						install
 gitmagic					install
@@ -63,7 +57,6 @@ gmpc-data					install
 gmtp						install
 gnupg2						install
 gparted						install
-gpdftext					install
 gpg						install
 gpg-agent					install
 gpodder						install
@@ -92,15 +85,12 @@ kodi						install
 kodi-bin					install
 kodi-data					install
 kodi-repository-kodi				install
-kodi-visualization-spectrum:amd64		install
 krita						install
 krita-data					install
 krita-gmic					install
-leafpad						install
 lsd           install
 mlocate						install
 moc						install
-moc-ffmpeg-plugin:amd64				install
 mopidy						install
 mopidy-alsamixer				install
 mopidy-doc					install
@@ -136,7 +126,6 @@ obs-studio					install
 okular						install
 okular-extra-backends				install
 pandoc						install
-pandoc-citeproc					install
 pandoc-data					install
 parted						install
 pass						install
@@ -175,7 +164,6 @@ syncthing					install
 syncthing-discosrv				install
 syncthing-gtk					install
 syncthing-relaysrv				install
-telegram-cli					install
 telegram-desktop				install
 testdisk					install
 thunar						install
@@ -197,7 +185,6 @@ unrar						install
 urlview						install
 vim-gtk3						install
 vim-scripts					install
-vivaldi-stable					install
 w3m						install
 w3m-img						install
 weechat						install
@@ -209,7 +196,6 @@ weechat-plugins					install
 weechat-python					install
 weechat-scripts					install
 wget						install
-yarn						install
 zathura						install
 zathura-djvu					install
 zathura-pdf-poppler				install
