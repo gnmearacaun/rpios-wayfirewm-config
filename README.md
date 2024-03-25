@@ -2,11 +2,13 @@
 
 - A keyboard-centric configuration for Raspberry Pi 4 & 5. 
  
-Raspberry Pi OS is based on Debian (Bookworm release).  It looks no different, but don't be fooled, this release is underpinned by Wayland and WayfireWM . Wayland is the modern replacement for X11 (the default windowing system on Linux for decades). 
+Raspberry Pi OS is based on Debian (Bookworm release).  It looks similar to the Bullseye release, but there is an important difference; RPiOS is now underpinned by Wayland and WayfireWM. Wayland is the modern replacement for X11 (the default windowing system on Linux for decades). 
 
-I originally set up HyprlandWM on the Pi5. To get it to build, I had to change the software repository from `stable` to `testing`, a manoeuver that is not officially supported. Eventually it would not boot up anymore. However, I get the same basic functionality with WayfireWM. The Raspberry Pi Foundation has done the heavy lifting to provide a deceptively simple desktop. The result is a smooth DE, extremely light on system resources typically requiring <2Gb ram. 
+I originally set up Hyprland (window manager) on the pi5. To compile it, I had to change the software sources from `stable` to `testing`, an action that is not officially supported. I found out why; eventually my pi would not boot up anymore. However, by adding some plugins and options, I can get the same ease of use with WayfireWM. The Raspberry Pi Foundation has done the heavy lifting to provide a deceptively simple desktop with some major changes in architecture including pipewire for how media (music and video) is handled. The result is a smooth DE, extremely light on system resources, typically requiring <2Gb ram. 
 
-RPiOS comes with little configuration ootb. To unlock the inherent potential power of the plugins and commands, one must customize `~/.config/wayfire.ini`. Actually most of the plugins are already included with the official OS. Some need configuration, others just need to be included in the list of plugins. The following binaries make it that much easier to navigate the desktop:
+This repo provides a [customized](https://github.com/gnmearacaun/rpios-wayfirewm-config/blob/main/howto-pi5wfwm.md) `~/.config/wayfire.ini` that has incorporated and expanded the RPiOS config. 
+
+The following binaries make it easier to adhere to a keyboard-only workflow
 - [space2meta](https://gitlab.com/interception/linux/plugins/space2meta): _turn your space key into the meta key when chorded to another key (on key release only)_
 - [caps2esc](https://gitlab.com/interception/linux/plugins/caps2esc): _transforming the most useless key ever in the most useful one_ 
 
