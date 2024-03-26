@@ -109,13 +109,13 @@ Run `getnf` in the terminal and follow the prompts.
 
 We installed `caps2esc` with `apt-get` above. 
 
-- `caps_lock` is `esc` when tapped, or `ctrl` when held down.
+- `caps_lock`: is `esc` when tapped, or `ctrl` when held down.
 
-- `space2meta`: space key acts as `super` when held down in combination with other keys). 
+- `space2meta`: space key acts as `super` when held down in combination with other keys. 
 
-- `s2arrows`: emulates the arrow keys when `s`+`{j,k,h,l}` are combined.
+- `s2arrows`: emulates the arrow keys when combined with `s`+`{j,k,h,l}`.
 
-We will need to build `space2meta` and `s2arrows` with the following steps. 
+We can construct `space2meta` and `s2arrows` with the following steps. 
 
 ```
 git clone https://gitlab.com/interception/linux/plugins/space2meta.git
