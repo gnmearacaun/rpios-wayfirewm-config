@@ -58,6 +58,10 @@ Log out and back in.
 
 - Copy wallpapers (as sudo) into /usr/share/rdp-wallpapers to set background via `right-click` on the Desktop
 
+- Note: When you edit wayfire.ini, you are automatically logged out when you change workspaces. You can use `Ctrl-Alt-Backspace` to logout/login manually. 
+
+- If your desktop freezes, log into another `tty` with `Ctrl+Alt+F2` and `reboot` 
+
 #### A minimal Vim configuration 
 
 - The package `vim-gtk3` has better clipboard support than Vim. Wayland users need `wl-clipboard` to copy and paste (both were installed with the previous `apt-get` command). 
@@ -74,8 +78,6 @@ cd && sudo cp -r .vim /root
 ```
 xnoremap <silent> <leader>y y:call system("wl-copy --trim-newline", @*)<cr>:call system("wl-copy -p --trim-newline", @*)<cr>
 ```
-
-- Note: When you edit wayfire.ini, you are automatically logged out. If not, you can use `Ctrl-Alt-Backspace` to logout/login and test your edits. If for whatever reason your desktop freezes, log into another `tty` with `Ctrl+Alt+F2` and `reboot` 
 
 ### Install zsh and [zap](https://www.zapzsh.com/) 
 
