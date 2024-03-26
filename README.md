@@ -58,7 +58,7 @@ Log out and back in.
 
 - Xdg default desktop folders can be changed in `~/.config/usr-dirs.dirs`
 
-- Copy wallpapers (as sudo) into /usr/share/rdp-wallpapers to set background via `right-click` on the Desktop
+- Copy your peronal wallpapers (as sudo) into /usr/share/rpd-wallpaper to set background via `right-click` on the Desktop. 
 
 - Note: When you edit wayfire.ini, you are automatically logged out when you change workspaces. You can use `Ctrl-Alt-Backspace` to logout/login manually. 
 
