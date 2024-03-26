@@ -2,7 +2,7 @@
 # HISTFILE="$XDG_DATA_HOME"/zsh/history
 HISTSIZE=1000000
 SAVEHIST=1000000
-export EDITOR="vim"
+export EDITOR="nvim"
 export TERMINAL="alacritty"
 export BROWSER="firefox"
 export PATH="$HOME/.local/bin":$PATH

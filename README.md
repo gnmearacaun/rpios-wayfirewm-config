@@ -2,7 +2,7 @@
 
 - A keyboard-centric configuration for Raspberry Pi 4 & 5. 
  
-Raspberry Pi OS is based on Debian (Bookworm release).  It looks similar to the Bullseye release, but there is an important difference; RPiOS is now underpinned by Wayland and WayfireWM. Wayland is the modern replacement for X11 (the default windowing system on Linux for decades). 
+The current Raspberry Pi OS is based on Debian Bookworm. On the surface, it looks similar to the previous Bullseye release, however RPiOS is now underpinned by Wayland and WayfireWM. Wayland is the modern replacement for X11 (the default windowing system on Linux for decades). 
 
 I originally set up Hyprland (window manager) on the pi5. To compile it, I had to change the software sources from `stable` to `testing`, an action that is not officially supported. I found out why; eventually my pi would not boot up anymore. However by adding some plugins and options, I can get the same _ease of use_ with WayfireWM. The Raspberry Pi Foundation has modernized the networking and architecture, and now uses pipewire for handling media sources (music and video) for example. The result is a smooth DE, extremely light on system resources, typically requiring <2Gb ram. 
 
@@ -36,11 +36,11 @@ BOOT_ORDER=0xf416
 sudo apt-get update
 sudo apt-get install aptitude vim-gtk3 wl-clipboard zsh ranger ripgrep fd-find fzf swaybg slurp alacritty zoxide lsd bat cmake ninja-build interception-caps2esc interception-tools interception-tools-compat wf-recorder timeshift obs-studio redshift wofi mako-notifier clipman kanshi 
 ```
-### Grab _this_ repo
+### Obtain _this_ repo
 ```
 git clone https://github.com/gnmearacaun/rpios-wayfirewm-config.git
 ```
-The configs contain customized aliases and keybindings.  
+These configs contain customized aliases and keybindings. Run commands one line at a time.  
 
 ```
 cd rpios-wayfirewm-config
@@ -62,13 +62,13 @@ Log out and back in.
 
 - Note: When you edit wayfire.ini, you are automatically logged out when you change workspaces. You can use `Ctrl-Alt-Backspace` to logout/login manually. 
 
-- If your desktop freezes, log into another `tty` with `Ctrl+Alt+F2` and `reboot` 
+- If your desktop freezes, log into another `tty` with `Ctrl+Alt+F3` and `reboot` 
 
 #### A minimal Vim configuration 
 
-- The package `vim-gtk3` has better clipboard support than Vim. Wayland users need `wl-clipboard` to copy and paste (both were installed with the previous `apt-get` command). 
+- The package `vim-gtk3` has better clipboard support than `vim` proper. Wayland users need `wl-clipboard` to copy and paste (both were installed with the previous `apt-get` command). 
 
-I usa a config authored by [jdhao](https://github.com/jdhao) while setting up the desktop, until neovim is built. We can make it available for `root` also.
+I use a simple config (no plugins) authored by [jdhao](https://github.com/jdhao) before neovim is built. It's useful to have it for editing files as `root`.
 
 ```
 mv ~/.vimrc ~/.vimrc.bak
@@ -108,24 +108,19 @@ Run `getnf` in the terminal and follow the prompts.
 ### Build interception-tools 
 
 We installed `caps2esc` with `apt-get` above. 
-
 - `caps_lock`: is `esc` when tapped, or `ctrl` when held down.
-
 - `space2meta`: space key acts as `super` when held down in combination with other keys. 
-
 - `s2arrows`: emulates the arrow keys when combined with `s`+`{j,k,h,l}`.
 
-We can construct `space2meta` and `s2arrows` with the following steps. 
-
+We can construct `space2meta` and `s2arrows` one line at a time. 
 ```
-git clone https://gitlab.com/interception/linux/plugins/space2meta.git
+https://gitlab.com/interception/linux/plugins/space2meta.git
 cd space2meta
 cmake -Bbuild
 cmake --build build
 sudo cp build/space2meta /usr/local/bin  
 ```
 and
-
 ```
 git clone https://github.com/kbairak/s2arrows.git
 cd s2arrows
@@ -141,9 +136,9 @@ Copy over the config from this repo, enable and start the service (you may have 
 sudo mv interception-tools/udevmon.yaml /etc/interception/udevmon.d/
 sudo systemctl enable --now udevmon.service
 ```
-- There's a slight lag after typing `s`, noticeable if you're using an sdcard. If you don't want `s2arrows` anymore, copy over `udevmon-without-s2arrows.yaml` instead and restart the service.
+- There's a slight lag after typing `s`, noticeable if you're using an sdcard. If you don't want `s2arrows` anymore, copy over `udevmon-without-s2arrows.yaml` instead, and restart the service.
 
-The following command increases udevmon priority. 
+The following command increases our shortcuts priority. 
 
 ```
 sudo nice -n -20 udevmon -c udevmon.yaml >udevmon.log 2>udevmon.err &
@@ -151,7 +146,7 @@ sudo nice -n -20 udevmon -c udevmon.yaml >udevmon.log 2>udevmon.err &
 
 ### Build Neovim 
 
-Neovim is improving rapidly. To take advantage of recent developments in the plugins infrastructure we need a newer version of Neovim than Bookworm repositories are offering.  
+Neovim is improving rapidly. To take advantage of recent developments in the plugins infrastructure we need a newer version of Neovim than Bookworm offers. Neovim plays nicely with the system clipboard for copy and pasting, commenting lines easily (`gcc`) and searching for files with `telescope` and so much more.  
 
 - Note `CMAKE_BUILD_TYPE=RelWithDebInfo` would make a build with Debug info. `Release` runs a bit lighter.
 
@@ -166,19 +161,28 @@ cd build && sudo cpack -G DEB && sudo dpkg -i nvim-linux64.deb
 nvim -V1 -v
 ```
 
-If you don't already have an `nvim` config set up to put into `~/.config`, feel free to use mine. My neovim config is based on https://github.com/ChristianChiarulli/nvim BDFL of LunarVim.
+If you don't have an `nvim` config ,feel free to use mine (based on that of the [BDFL](https://github.com/ChristianChiarulli) of LunarVim).
 
 ```
-https://github.com/gnmearacaun/nvim-launch.git
+ 
+git clone https://github.com/gnmearacaun/nvim-launch.git ~/.config/nvim
 ```
-- Note: if Mason errors are being thrown, do this from the nvim commandline:
+- Note: if Mason errors are thrown on start up, run this command:
 
 ```
 :Lazy reload mason.nvim
 ```
+
+Now that Neovim is available, make it the default in `~/.config/zsh/exports.zsh`
+
+```
+export EDITOR="nvim"
+```
+
 ### Install nodejs 
 
-I'm using [nodesource](https://github.com/nodesource/distributions). Run as root:
+Utilizing [nodesource](https://github.com/nodesource/distributions), run as root:
+
 ```
 sudo su
 curl -fsSL https://deb.nodesource.com/setup_21.x | bash - &&\
