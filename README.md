@@ -48,20 +48,15 @@ sudo mv interception-tools/udevmon.yaml /etc/interception/udevmon.d/
 ```
 Log out and back in.
 
-- Now you can move around the windows and workspaces using Super+{a,s,f,w,b,h,j,k,l,`Tab`} and create tiles out of windows and back again with `Alt`+{h,j,k,l}
+- Now you can move around the windows and workspaces using `super`+`{a,s,f,w,b,h,j,k,l,Tab}` and create tiles out of windows and back again with `Alt`+`{h,j,k,l}`
 
 ### RPiOS checklist
 
-- Customize lxterminal & taskbar, darken theme.
+- Customize lxterminal & taskbar.
 
 - Xdg default desktop folders can be changed in `~/.config/usr-dirs.dirs`
 
-- Copy images (as sudo) into /usr/share/rdp-wallpapers if you want to set background via right-clicking the Desktop
-
-- The following augmented command is needed to run obs-studio (video recording software):
-```
-MESA_GL_VERSION_OVERRIDE=3.3 obs
-```
+- Copy wallpapers (as sudo) into /usr/share/rdp-wallpapers to set background via `right-click` on the Desktop
 
 #### A minimal Vim configuration 
 
@@ -212,3 +207,12 @@ sudo make distclean && make CMAKE_BUILD_TYPE=Release
 cd build && sudo cpack -G DEB && sudo dpkg -i nvim-linux64.deb
 nvim -V1 -v
 ```
+
+### Errata
+
+- The following augmented command is needed to run obs-studio for video recording:
+
+```
+MESA_GL_VERSION_OVERRIDE=3.3 obs
+```
+
