@@ -34,7 +34,7 @@ BOOT_ORDER=0xf416
  
 ```
 sudo apt-get update
-sudo apt-get install aptitude ranger zsh ripgrep fd-find fzf vim-gtk3 wl-clipboard swaybg slurp alacritty zoxide lsd bat cmake ninja-build interception-caps2esc interception-tools interception-tools-compat wf-recorder timeshift obs-studio redshift wofi mako-notifier clipman kanshi 
+sudo apt-get install aptitude vim-gtk3 wl-clipboard zsh ranger ripgrep fd-find fzf swaybg slurp alacritty zoxide lsd bat cmake ninja-build interception-caps2esc interception-tools interception-tools-compat wf-recorder timeshift obs-studio redshift wofi mako-notifier clipman kanshi 
 ```
 ### Grab _this_ repo
 ```
@@ -48,7 +48,7 @@ sudo mv interception-tools/udevmon.yaml /etc/interception/udevmon.d/
 ```
 Log out and back in.
 
-- Now you can move around the windows and workspaces using Super+{a,s,f,w,b,h,j,k,l,<Tab>} and create tiles out of windows with <Alt>+{h,j,k,l}
+- Now you can move around the windows and workspaces using Super+{a,s,f,w,b,h,j,k,l,`Tab`} and create tiles out of windows and back again with `Alt`+{h,j,k,l}
 
 ### RPiOS checklist
 
@@ -63,11 +63,11 @@ Log out and back in.
 MESA_GL_VERSION_OVERRIDE=3.3 obs
 ```
 
-### A minimal Vim configuration 
+#### A minimal Vim configuration 
 
-- The package vim-gtk3 has better clipboard support than plain old Vim itself. Wayland users need `wl-clipboard` (installed above). 
+- The package `vim-gtk3` has better clipboard support than Vim. Wayland users need `wl-clipboard` to copy and paste (both were installed with the previous `apt-get` command). 
 
-I install the following config by [jdhao](https://github.com/jdhao) just for setting up the desktop, until neovim is built. We can make it available to `root` also.
+I usa a config authored by [jdhao](https://github.com/jdhao) while setting up the desktop, until neovim is built. We can make it available for `root` also.
 
 ```
 mv ~/.vimrc ~/.vimrc.bak
@@ -75,8 +75,7 @@ mkdir -p ~/.vim && cd ~/.vim
 git clone https://github.com/jdhao/minimal_vim.git .
 cd && sudo cp -r .vim /root
 ```
-- Add the following line to your `init.vim` to yank to `wl-clipboard`. `<leader>` is set to the `<spacebar>`
-
+- Tip: add the following line to your `init.vim` to yank to `wl-clipboard`. So you would visually highlight the text with `v` or `shift+v` and the motion keys `h,j,k,l` and press `<leader>` (it's mapped to the `<spacebar>`) and then `y` to copy. Most terminals have `Ctrl+Shift+v` as the paste command. 
 ```
 xnoremap <silent> <leader>y y:call system("wl-copy --trim-newline", @*)<cr>:call system("wl-copy -p --trim-newline", @*)<cr>
 ```
