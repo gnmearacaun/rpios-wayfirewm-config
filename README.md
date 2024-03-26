@@ -4,13 +4,13 @@
  
 Raspberry Pi OS is based on Debian (Bookworm release).  It looks similar to the Bullseye release, but there is an important difference; RPiOS is now underpinned by Wayland and WayfireWM. Wayland is the modern replacement for X11 (the default windowing system on Linux for decades). 
 
-I originally set up Hyprland (window manager) on the pi5. To compile it, I had to change the software sources from `stable` to `testing`, an action that is not officially supported. I found out why; eventually my pi would not boot up anymore. However, by adding some plugins and options, I can get the same ease of use with WayfireWM. The Raspberry Pi Foundation has done the heavy lifting to provide a deceptively simple desktop with some major changes in architecture including pipewire for how media (music and video) is handled. The result is a smooth DE, extremely light on system resources, typically requiring <2Gb ram. 
+I originally set up Hyprland (window manager) on the pi5. To compile it, I had to change the software sources from `stable` to `testing`, an action that is not officially supported. I found out why; eventually my pi would not boot up anymore. However by adding some plugins and options, I can get the same _ease of use_ with WayfireWM. The Raspberry Pi Foundation has modernized the networking and architecture, and now uses pipewire for handling media sources (music and video) for example. The result is a smooth DE, extremely light on system resources, typically requiring <2Gb ram. 
 
-This repo provides a [customized](https://github.com/gnmearacaun/rpios-wayfirewm-config/blob/main/howto-pi5wfwm.md) `~/.config/wayfire.ini` that has incorporated and expanded the RPiOS config. 
+This repo provides a customized [~/.config/wayfire.ini](https://github.com/gnmearacaun/rpios-wayfirewm-config/blob/main/wayfire.ini) that has [incorporated and expanded](https://github.com/gnmearacaun/rpios-wayfirewm-config/blob/main/howto-pi5wfwm.md) the RPiOS config. 
 
 The following binaries make it easier to adhere to a keyboard-only workflow
 - [space2meta](https://gitlab.com/interception/linux/plugins/space2meta): _turn your space key into the meta key when chorded to another key (on key release only)_
-- [caps2esc](https://gitlab.com/interception/linux/plugins/caps2esc): _transforming the most useless key ever in the most useful one_ 
+- [caps2esc](https://gitlab.com/interception/linux/plugins/caps2esc): _transforming the most useless key ever into the most useful one_ 
 
 - This repo has an accompanying video [TBA](https://example.com) 
 
@@ -107,10 +107,9 @@ Run `getnf` in the terminal and follow the prompts.
 
 ### Build interception-tools 
 
-We installed `caps2esc` along with [Interception-tools](https://gitlab.com/interception/linux/tools) `caps2esc` with apt-get above. 
+We installed `caps2esc` with `apt-get` above. 
 
 - `caps_lock` is `esc` when tapped, or `ctrl` when held down.
-
 
 - `space2meta`: space key acts as `super` when held down in combination with other keys). 
 
