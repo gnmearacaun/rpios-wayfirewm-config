@@ -44,7 +44,6 @@ The configs contain some customized aliases and keybindings. To make use of them
 
 ```
 mv -i wayfire.ini zsh ~/.config 
-sudo mv interception-tools/udevmon.yaml /etc/interception/udevmon.d/
 ```
 Log out and back in.
 
@@ -105,9 +104,16 @@ Run `getnf` in the terminal and follow the prompts.
 
 ### Build interception-tools 
 
-[Interception-tools](https://gitlab.com/interception/linux/tools) `caps2esc` (caps_lock is esc when tapped or ctrl when held down), `space2meta` (space key acts as meta when held down in combination with other keys)
+We installed `caps2esc` along with [Interception-tools](https://gitlab.com/interception/linux/tools) `caps2esc` with apt-get above. 
 
-We installed some `interception` tools with apt-get above. As for `space2meta` and `s2arrows` we will need to build it ourselves. 
+- `caps_lock` is `esc` when tapped, or `ctrl` when held down.
+
+
+- `space2meta`: space key acts as `super` when held down in combination with other keys). 
+
+- `s2arrows`: emulates the arrow keys when `s`+`{j,k,h,l}` are combined.
+
+We will need to build `space2meta` and `s2arrows` with the following steps. 
 
 ```
 git clone https://gitlab.com/interception/linux/plugins/space2meta.git
@@ -116,7 +122,7 @@ cmake -Bbuild
 cmake --build build
 sudo cp build/space2meta /usr/local/bin  
 ```
-[s2arrows](https://github.com/kbairak/s2arrows) emulates the arrow keys when s+{j,k,h,l} are combined.
+and
 
 ```
 git clone https://github.com/kbairak/s2arrows.git
@@ -127,18 +133,19 @@ cmake ..
 make
 sudo make install
 ```
-Enable and start the service 
+Copy over the config from this repo, enable and start the service (you may have to logout/login to get the effect). 
 
-```bash
+```
+sudo mv interception-tools/udevmon.yaml /etc/interception/udevmon.d/
 sudo systemctl enable --now udevmon.service
 ```
+- There's a slight lag after typing `s`, noticeable if you're using an sdcard. If you don't want `s2arrows` anymore, copy over `udevmon-without-s2arrows.yaml` instead and restart the service.
 
-You may have to log out and back in to get the effect. The following command increases udevmon priority. 
+The following command increases udevmon priority. 
 
 ```
 sudo nice -n -20 udevmon -c udevmon.yaml >udevmon.log 2>udevmon.err &
 ```
-You may notice a slight lag when typing `s` if you're installation is on an sdcard. If you don't want to use it rename `udevmon-without-s2arrows.yaml` to `udevmon.yaml` and copy that one over instead.
 
 ### Build Neovim 
 
