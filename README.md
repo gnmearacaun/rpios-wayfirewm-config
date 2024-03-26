@@ -40,10 +40,13 @@ sudo apt-get install aptitude vim-gtk3 wl-clipboard zsh ranger ripgrep fd-find f
 ```
 git clone https://github.com/gnmearacaun/rpios-wayfirewm-config.git
 ```
-The configs contain some customized aliases and keybindings. To make use of them:
+The configs contain customized aliases and keybindings.  
 
 ```
-mv -i wayfire.ini zsh ~/.config 
+cd rpios-wayfirewm-config
+mv ~/.config/wayfire.ini wayfire.ini-original
+mv -i wayfire.ini ~/.config 
+mv -r zsh ~/.config 
 ```
 Log out and back in.
 
