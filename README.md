@@ -50,7 +50,7 @@ mv -r zsh ~/.config
 ```
 Log out and back in.
 
-- Now you can move around the windows and 9 workspaces using `super`+`{a,s,f,w,b,h,j,k,l,Tab}` and create tiles out of windows and back again with `Alt`+`{h,j,k,l}`
+- Now you can move around the windows and 9 workspaces using `super`+`{a,s,f,w,b,h,j,k,l,Tab}` and create tiles out of windows and back to tiles with `Alt`+`{h,j,k,l}`
 
 ### RPiOS checklist
 
@@ -58,7 +58,7 @@ Log out and back in.
 
 - Xdg default desktop folders can be changed in `~/.config/usr-dirs.dirs`
 
-- Copy your peronal wallpapers (as sudo) into /usr/share/rpd-wallpaper to set background via `right-click` on the Desktop. 
+- Copy your personal wallpapers (as sudo) into /usr/share/rpd-wallpaper to set background via `right-click` on the Desktop. 
 
 - Note: When you edit wayfire.ini, you are automatically logged out when you change workspaces. You can use `Ctrl-Alt-Backspace` to logout/login manually. 
 
@@ -68,7 +68,7 @@ Log out and back in.
 
 - The package `vim-gtk3` has better clipboard support than `vim` proper. Wayland users need `wl-clipboard` to copy and paste (both were installed with the previous `apt-get` command). 
 
-I use a simple config (no plugins) authored by [jdhao](https://github.com/jdhao) before neovim is built. It's useful to have it for editing files as `root`.
+I use a simple config (no plugins) authored by [jdhao](https://github.com/jdhao) before neovim is built. It can also be useful to make it available for editing files as `sudo`.
 
 ```
 mv ~/.vimrc ~/.vimrc.bak
