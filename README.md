@@ -50,7 +50,7 @@ mv -r zsh ~/.config
 ```
 Log out and back in.
 
-- Now you can move around the windows and workspaces using `super`+`{a,s,f,w,b,h,j,k,l,Tab}` and create tiles out of windows and back again with `Alt`+`{h,j,k,l}`
+- Now you can move around the windows and 9 workspaces using `super`+`{a,s,f,w,b,h,j,k,l,Tab}` and create tiles out of windows and back again with `Alt`+`{h,j,k,l}`
 
 ### RPiOS checklist
 
@@ -136,7 +136,7 @@ Copy over the config from this repo, enable and start the service (you may have 
 sudo mv interception-tools/udevmon.yaml /etc/interception/udevmon.d/
 sudo systemctl enable --now udevmon.service
 ```
-- There's a slight lag after typing `s`, noticeable if you're using an sdcard. If you don't want `s2arrows` anymore, copy over `udevmon-without-s2arrows.yaml` instead, and restart the service.
+- There's a slight lag after typing `s`, more noticeable if you're using an sdcard. You need to get used to pausing after typing `s`. If the trade-off isn't worth it and you don't want `s2arrows` anymore, copy over `udevmon-without-s2arrows.yaml` instead, and restart the service.
 
 The following command increases our shortcuts priority. 
 

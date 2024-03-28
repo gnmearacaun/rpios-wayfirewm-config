@@ -2,6 +2,7 @@
 alias j='z'
 alias f='zi'
 alias g='lazygit'
+alias temp='/usr/bin/vcgencmd measure_temp'
 alias zup="find "$ZDOTDIR/plugins" -type d -exec test -e '{}/.git' ';' -print0 | xargs -I {} -0 git -C {} pull -q"
 alias ni='nvim ~/.config/nvim/'
 # alias lvim='nvim -u ~/.local/share/lunarvim/lvim/init.lua --cmd "set runtimepath+=~/.local/share/lunarvim/lvim"'

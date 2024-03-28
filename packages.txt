@@ -119,6 +119,7 @@ ncurses-base					install
 ncurses-doc					install
 ncurses-term					install
 neofetch					install
+newsboat         install
 ninja-build					install
 nnn						install
 obs-plugins					install
@@ -157,6 +158,9 @@ smplayer-themes					install
 socat						install
 speedtest-cli					install
 stow						install
+strawberry      install
+streamripper    install
+streamtuner2     install
 surf						install
 surfraw						install
 surfraw-extra					install
