@@ -54,11 +54,11 @@ Log out and back in.
 
 ### RPiOS checklist
 
-- Customize lxterminal & taskbar.
+- Customize lxterminal . Right click the taskbar and desktop to set up the system font and theme.
 
 - Xdg default desktop folders can be changed in `~/.config/usr-dirs.dirs`
 
-- Copy your personal wallpapers (as sudo) into /usr/share/rpd-wallpaper to set background via `right-click` on the Desktop. 
+- Copy some nicer wallpapers (`sudo mv`) into `/usr/share/rpd-wallpaper` to set background via _Desktop Configuration Menu_. 
 
 - Note: When you edit wayfire.ini, you are automatically logged out when you change workspaces. You can use `Ctrl-Alt-Backspace` to logout/login manually. 
 
@@ -104,6 +104,8 @@ https://github.com/getnf/getnf
 curl -fsSL https://raw.githubusercontent.com/ronniedroid/getnf/master/install.sh | bash
 ```
 Run `getnf` in the terminal and follow the prompts.
+
+The fonts you select will be available system-wide.
 
 ### Build interception-tools 
 
