@@ -12,7 +12,7 @@ The following binaries make it easier to adhere to a keyboard-only workflow
 - [space2meta](https://gitlab.com/interception/linux/plugins/space2meta): _turn your space key into the meta key when chorded to another key (on key release only)_
 - [caps2esc](https://gitlab.com/interception/linux/plugins/caps2esc): _transforming the most useless key ever into the most useful one_ 
 
-- This repo has an accompanying video [TBA](https://example.com) 
+<!-- - This repo has an accompanying video [TBA](https://example.com)  -->
 
 ### _Prepare the ground_ 
 
@@ -54,7 +54,7 @@ Log out and back in.
 
 ### RPiOS checklist
 
-- Customize lxterminal . Right click the taskbar and desktop to set up the system font and theme.
+- Customize lxterminal. Right click the taskbar and desktop to set up the system font and theme.
 
 - Xdg default desktop folders can be changed in `~/.config/usr-dirs.dirs`
 
@@ -109,11 +109,13 @@ The fonts you select will be available system-wide.
 
 ### Build interception-tools 
 
-_`caps2esc`_
+_Caps2esc_
+
 - `<Caps_lock>` is `esc` when tapped and `ctrl` when held down with another key. We installed it with `apt-get` above. 
 
-_`space2meta`_ 
-- `<space_key>` is `space` when tapped and `super` when held down in combination with other keys. To build:
+_Space2meta_
+
+- `<Space_key>` is `space` when tapped and `super` when held down in combination with other keys. To build:
 
 ```
 git clone https://gitlab.com/interception/linux/plugins/space2meta.git
@@ -131,7 +133,7 @@ sudo mv interception-tools/udevmon.yaml /etc/interception/udevmon.d/
 sudo systemctl enable --now udevmon.service
 ```
 
-The following command increases our shortcuts priority. 
+The following command increases the priority. 
 
 ```
 sudo nice -n -20 udevmon -c udevmon.yaml >udevmon.log 2>udevmon.err &
@@ -215,10 +217,11 @@ sudo make distclean && make CMAKE_BUILD_TYPE=Release
 cd build && sudo cpack -G DEB && sudo dpkg -i nvim-linux64.deb
 nvim -V1 -v
 ```
-# Install `s2arrows`
+### Install `s2arrows`
 
-- `s2arrows`: emulates the arrow keys when combined with `s`+`{j,k,h,l}`.
-There's a slight lag after typing `s`, more noticeable if you're using an sdcard. You need to get used to pausing after typing `s`. If the trade-off isn't worth it and you don't want `s2arrows` anymore, copy over `udevmon-with-s2arrows.yaml`, replacing /etc/interception/udevmon.d/udevmon.yaml, and restart the service.
+`s2arrows`: emulates the arrow keys when combined with `s`+`{j,k,h,l}`.
+
+- There's a slight lag after typing `s`, noticeable if on an sdcard. I'm used to pausing after typing `s`. If you want `s2arrows`, `sudo cp udevmon-with-s2arrows.yaml` to /etc/interception/udevmon.d/` instead of (or replace the contents of) `udevmon.yaml`, and restart the service.
 
 ```
 git clone https://github.com/kbairak/s2arrows.git
@@ -229,6 +232,7 @@ cmake ..
 make
 sudo make install
 ```
+
 ### Errata
 
 - The following augmented command is needed to run obs-studio for video recording:
