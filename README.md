@@ -109,36 +109,27 @@ The fonts you select will be available system-wide.
 
 ### Build interception-tools 
 
-We installed `caps2esc` with `apt-get` above. 
-- `caps_lock`: is `esc` when tapped, or `ctrl` when held down.
-- `space2meta`: space key acts as `super` when held down in combination with other keys. 
-- `s2arrows`: emulates the arrow keys when combined with `s`+`{j,k,h,l}`.
+_`caps2esc`_
+- `<Caps_lock>` is `esc` when tapped and `ctrl` when held down with another key. We installed it with `apt-get` above. 
 
-We can construct `space2meta` and `s2arrows` one line at a time. 
+_`space2meta`_ 
+- `<space_key>` is `space` when tapped and `super` when held down in combination with other keys. To build:
+
 ```
-https://gitlab.com/interception/linux/plugins/space2meta.git
+git clone https://gitlab.com/interception/linux/plugins/space2meta.git
 cd space2meta
 cmake -Bbuild
 cmake --build build
-sudo cp build/space2meta /usr/local/bin  
+sudo mv build/space2meta /usr/local/bin  
+cd .. && rm -r space2meta
 ```
-and
-```
-git clone https://github.com/kbairak/s2arrows.git
-cd s2arrows
-mkdir build
-cd build
-cmake ..
-make
-sudo make install
-```
+
 Copy over the config from this repo, enable and start the service (you may have to logout/login to get the effect). 
 
 ```
 sudo mv interception-tools/udevmon.yaml /etc/interception/udevmon.d/
 sudo systemctl enable --now udevmon.service
 ```
-- There's a slight lag after typing `s`, more noticeable if you're using an sdcard. You need to get used to pausing after typing `s`. If the trade-off isn't worth it and you don't want `s2arrows` anymore, copy over `udevmon-without-s2arrows.yaml` instead, and restart the service.
 
 The following command increases our shortcuts priority. 
 
@@ -224,7 +215,20 @@ sudo make distclean && make CMAKE_BUILD_TYPE=Release
 cd build && sudo cpack -G DEB && sudo dpkg -i nvim-linux64.deb
 nvim -V1 -v
 ```
+# Install `s2arrows`
 
+- `s2arrows`: emulates the arrow keys when combined with `s`+`{j,k,h,l}`.
+There's a slight lag after typing `s`, more noticeable if you're using an sdcard. You need to get used to pausing after typing `s`. If the trade-off isn't worth it and you don't want `s2arrows` anymore, copy over `udevmon-with-s2arrows.yaml`, replacing /etc/interception/udevmon.d/udevmon.yaml, and restart the service.
+
+```
+git clone https://github.com/kbairak/s2arrows.git
+cd s2arrows
+mkdir build
+cd build
+cmake ..
+make
+sudo make install
+```
 ### Errata
 
 - The following augmented command is needed to run obs-studio for video recording:
