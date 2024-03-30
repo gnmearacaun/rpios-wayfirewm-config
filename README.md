@@ -183,15 +183,24 @@ sudo su
 curl -fsSL https://deb.nodesource.com/setup_21.x | bash - &&\
 apt-get install -y nodejs
 ```
-## Extras
-### Debian packages
 
-- A curated list of optional programs
+### Additional Info
+
+- The following augmented command is needed to run obs-studio for video recording on the Pi:
+
 ```
-sudo apt-get install dselect --yes
-sudo dpkg --set-selections < "packages.txt"
-/usr/lib/dpkg/methods/apt/update /var/lib/dpkg/
-sudo apt-get dselect-upgrade -y
+MESA_GL_VERSION_OVERRIDE=3.3 obs
+```
+
+### Upgrading Neovim
+
+Later when you want to upgrade, go back into the neovim directory (wherever it's stashed). Assuming you're on the branch you want, to rebuild from scratch and replace the current build:
+
+```
+git pull
+sudo make distclean && make CMAKE_BUILD_TYPE=Release
+cd build && sudo cpack -G DEB && sudo dpkg -i nvim-linux64.deb
+nvim -V1 -v
 ```
 
 ### Rebuilding Neovim
@@ -205,39 +214,5 @@ Alternatively, just delete the CMAKE_INSTALL_PREFIX artifacts:
 ```
 sudo rm /usr/local/bin/nvim
 sudo rm -r /usr/local/share/nvim/
-```
-
-### Upgrading Neovim
-
-Later when you want to upgrade, go back into the neovim directory (wherever it's stashed). Assuming you're on the branch you want, to rebuild from scratch and replace the current build:
-
-```
-git pull
-sudo make distclean && make CMAKE_BUILD_TYPE=Release
-cd build && sudo cpack -G DEB && sudo dpkg -i nvim-linux64.deb
-nvim -V1 -v
-```
-### Install `s2arrows`
-
-`s2arrows`: emulates the arrow keys when combined with `s`+`{j,k,h,l}`.
-
-- There's a slight lag after typing `s`, noticeable if on an sdcard. I'm used to pausing after typing `s`. If you want `s2arrows`, `sudo cp udevmon-with-s2arrows.yaml` to /etc/interception/udevmon.d/` instead of (or replace the contents of) `udevmon.yaml`, and restart the service.
-
-```
-git clone https://github.com/kbairak/s2arrows.git
-cd s2arrows
-mkdir build
-cd build
-cmake ..
-make
-sudo make install
-```
-
-### Errata
-
-- The following augmented command is needed to run obs-studio for video recording:
-
-```
-MESA_GL_VERSION_OVERRIDE=3.3 obs
 ```
 
