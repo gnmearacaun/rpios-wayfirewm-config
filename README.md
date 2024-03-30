@@ -20,7 +20,7 @@ The following binaries make it easier to adhere to a keyboard-only workflow
 ```
 sudo nvme format -s1 -lb=0 /dev/nvme0n1
 ```
-- Change `BOOT_ORDER` line in order to boot from an SSD. BOOT_ORDER options read from right to left, with 6 representing the nvme drive, 1 is sdcard and 4 is USB boot) 
+- Change `BOOT_ORDER` line to boot from an SSD. Options are read from right to left. 6 represents an nvme drive boots first, 1 is sdcard and 4 is USB boot. 
 
 ```
 sudo rpi-eeprom-config --edit
