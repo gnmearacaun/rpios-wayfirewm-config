@@ -1,6 +1,4 @@
-## Rpios-wayfirewm
-
-- A keyboard-centric configuration for Raspberry Pi 4 & 5. 
+### A keyboard-centric configuration for Raspberry Pi 4 & 5. 
  
 The current Raspberry Pi OS is based on Debian Bookworm. On the surface, it looks similar to the previous Bullseye release, however RPiOS is now underpinned by Wayland and WayfireWM. Wayland is the modern replacement for X11 (the default windowing system on Linux for decades). 
 
