@@ -46,7 +46,6 @@ These configs contain customized aliases and keybindings. Run commands one line 
 cd rpios-wayfirewm-config
 mv ~/.config/wayfire.ini wayfire.ini-original
 mv -i wayfire.ini ~/.config 
-mv -r zsh ~/.config 
 ```
 Log out and back in.
 
@@ -81,7 +80,7 @@ cd && sudo cp -r .vim /root
 xnoremap <silent> <leader>y y:call system("wl-copy --trim-newline", @*)<cr>:call system("wl-copy -p --trim-newline", @*)<cr>
 ```
 
-### Install zsh and [zap](https://www.zapzsh.com/) 
+### Install Zsh and Zap
 
 To set zsh as your default shell, execute the following.
 ```
@@ -91,15 +90,10 @@ Log out and back in. You're prompt will be basic. Install [zap](https://github.c
 ```
 echo $SHELL
 zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1
-```
-Create ~/.zshenv containing: 
-```
-export ZDOTDIR=$HOME/.config/zsh
-```
-Reopen the shell, `zap` automajically installs the plugins. 
 
-### Get nerdfonts
-https://github.com/getnf/getnf
+Reopen the shell, `zap` automajically installs the default plugins. Plugins can be found on the [Zap homepage](https://www.zapzsh.com/) 
+
+### Get [Nerdfonts](https://github.com/getnf/getnf)
 ```
 curl -fsSL https://raw.githubusercontent.com/ronniedroid/getnf/master/install.sh | bash
 ```
@@ -129,7 +123,7 @@ cd .. && rm -r space2meta
 Copy over the config from this repo, enable and start the service (you may have to logout/login to get the effect). 
 
 ```
-sudo mv interception-tools/udevmon.yaml /etc/interception/udevmon.d/
+sudo mv udevmon.yaml /etc/interception/udevmon.d/
 sudo systemctl enable --now udevmon.service
 ```
 
@@ -155,20 +149,10 @@ make CMAKE_BUILD_TYPE=Release
 cd build && sudo cpack -G DEB && sudo dpkg -i nvim-linux64.deb
 nvim -V1 -v
 ```
+https://www.lazyvim.org/installation
+If you don't have an `nvim` config of your own, [LazyVim](https://www.lazyvim.org/installation) is a great option, or feel free to use [mine](https://github.com/gnmearacaun/nvim-launch.git) 
 
-If you don't have an `nvim` config ,feel free to use mine (based on that of the [BDFL](https://github.com/ChristianChiarulli) of LunarVim).
-
-```
- 
-git clone https://github.com/gnmearacaun/nvim-launch.git ~/.config/nvim
-```
-- Note: if Mason errors are thrown on start up, run this command:
-
-```
-:Lazy reload mason.nvim
-```
-
-Now that Neovim is available, make it the default in `~/.config/zsh/exports.zsh`
+Now that Neovim is available, make it the default in your `.zshrc`
 
 ```
 export EDITOR="nvim"
