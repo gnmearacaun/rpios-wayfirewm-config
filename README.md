@@ -88,12 +88,12 @@ sudo sh -c "echo $(which zsh) >> /etc/shells" && chsh -s $(which zsh)
 ```
 Log out and back in. You're prompt will be basic. Install [zap](https://github.com/zap-zsh/zap) zsh plugin manager (replaces the need for `oh-my-zsh`)
 ```
-echo $SHELL
 zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1
-
+```
 Reopen the shell, `zap` automajically installs the default plugins. Plugins can be found on the [Zap homepage](https://www.zapzsh.com/) 
 
 ### Get [Nerdfonts](https://github.com/getnf/getnf)
+
 ```
 curl -fsSL https://raw.githubusercontent.com/ronniedroid/getnf/master/install.sh | bash
 ```
