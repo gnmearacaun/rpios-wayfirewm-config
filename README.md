@@ -10,7 +10,7 @@ The following binaries make it easier to adhere to a keyboard-only workflow
 - [space2meta](https://gitlab.com/interception/linux/plugins/space2meta): _turn your space key into the meta key when chorded to another key (on key release only)_
 - [caps2esc](https://gitlab.com/interception/linux/plugins/caps2esc): _transforming the most useless key ever into the most useful one_ 
 
-<!-- - This repo has an accompanying video [TBA](https://example.com)  -->
+- This repo has an [accompanying video](https://youtu.be/ECF7ZQ-Pdsg?si=ZKQ3Pu0pw540ZcwP) 
 
 ### _Prepare the ground_ 
 
