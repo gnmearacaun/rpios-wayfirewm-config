@@ -27,7 +27,7 @@ Log out and back in (`Ctrl-Alt-Backspace` to logout). Now you can move around th
 
 - [caps2esc](https://gitlab.com/interception/linux/plugins/caps2esc): _transforming the most useless key ever into the most useful one_ `<Caps_lock>` is `esc` when tapped and `ctrl` when held down with another key. 
 
-- [space2meta](https://gitlab.com/interception/linux/plugins/space2meta): _turn your space key into the meta key when chorded to another key_. 
+- [space2meta](https://gitlab.com/interception/linux/plugins/space2meta): _turn your space key into the meta (a.k.a. super) key when chorded to another key_. Window managers typically make liberal use of the `super` key to move around. 
 
 `Caps2esc` is available in the repo, `space2meta` we need to build manually.
 
@@ -55,24 +55,6 @@ The following command increases the priority.
 sudo nice -n -20 udevmon -c udevmon.yaml >udevmon.log 2>udevmon.err &
 ```
 
-#### A Minimal Vim Configuration 
-
-I use a simple config (no plugins) authored by [jdhao](https://github.com/jdhao) before neovim is built. It can also be useful to make it available for editing files as `sudo`.
-
-- The package `vim-gtk3` has better clipboard support than `vim` proper. Wayland users need `wl-clipboard` to copy and paste (both were installed with the previous `apt-get` command). 
-
-```
-sudo apt-get install vim-gtk3 wl-clipboard 
-mv ~/.vimrc ~/.vimrc.bak
-mkdir -p ~/.vim && cd ~/.vim
-git clone https://github.com/jdhao/minimal_vim.git .
-cd && sudo cp -r .vim /root
-```
-- Tip: add the following line to your `init.vim` to yank to `wl-clipboard`. So you would visually highlight the text with `v` or `shift+v` and the motion keys `h,j,k,l` and press `<leader>` (it's mapped to the `<spacebar>`) and then `y` to copy. Most terminals have `Ctrl+Shift+v` as the paste command. 
-```
-xnoremap <silent> <leader>y y:call system("wl-copy --trim-newline", @*)<cr>:call system("wl-copy -p --trim-newline", @*)<cr>
-```
-
 #### Zsh and Zap
 
 To set zsh as your default shell, execute the following.
@@ -86,7 +68,9 @@ zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) 
 ```
 Reopen the shell, `zap` automajically installs the default plugins. Plugins can be found on the [Zap homepage](https://www.zapzsh.com/) 
 
-#### Get [Nerdfonts](https://github.com/getnf/getnf)
+#### [Nerdfonts](https://github.com/getnf/getnf)
+
+Often required by modern shell programs like zsh and neovim.
 
 ```
 curl -fsSL https://raw.githubusercontent.com/ronniedroid/getnf/master/install.sh | bash
@@ -95,7 +79,7 @@ Run `getnf` in the terminal and follow the prompts.
 
 The fonts you select will be available system-wide.
 
-#### Building a Recent Neovim 
+#### Build the Latest Neovim 
 
 Neovim is improving rapidly. To take advantage of recent developments in the plugins infrastructure we need a newer version of Neovim than Bookworm offers. Neovim plays nicely with the system clipboard for copy and pasting, commenting lines easily (`gcc`) and searching for files with `telescope` and so much more.  
 
@@ -152,5 +136,23 @@ Alternatively, just delete the CMAKE_INSTALL_PREFIX artifacts:
 ```
 sudo rm /usr/local/bin/nvim
 sudo rm -r /usr/local/share/nvim/
+```
+
+#### Alternatively, A Minimal Vim Configuration 
+
+I use a simple config (no plugins) authored by [jdhao](https://github.com/jdhao) while I'm  setting thing up and before neovim is built. It's also useful for occasional editing as `sudo`.
+
+- The package `vim-gtk3` has better clipboard support than `vim` proper. Wayland users need `wl-clipboard` to copy and paste (both were installed with the previous `apt-get` command). 
+
+```
+sudo apt-get install vim-gtk3 wl-clipboard 
+mv ~/.vimrc ~/.vimrc.bak
+mkdir -p ~/.vim && cd ~/.vim
+git clone https://github.com/jdhao/minimal_vim.git .
+cd && sudo cp -r .vim /root
+```
+- Tip: add the following line to your `init.vim` to yank to `wl-clipboard`. So you would visually highlight the text with `v` or `shift+v` and the motion keys `h,j,k,l` and press `<leader>` (it's mapped to the `<spacebar>`) and then `y` to copy. Most terminals have `Ctrl+Shift+v` as the paste command. 
+```
+xnoremap <silent> <leader>y y:call system("wl-copy --trim-newline", @*)<cr>:call system("wl-copy -p --trim-newline", @*)<cr>
 ```
 
