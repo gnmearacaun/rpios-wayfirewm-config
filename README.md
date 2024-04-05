@@ -1,6 +1,6 @@
 ### A keyboard-centric configuration for Raspberry Pi 4 & 5. 
  
-The current Raspberry Pi OS is based on Debian Bookworm. On the surface, it looks similar to the previous Bullseye release, however RPiOS is now underpinned by Wayland and WayfireWM. Wayland is the modern replacement for X11 (the default windowing system on Linux for decades). 
+The current Raspberry Pi OS (Bookworm edition) uses Wayfire window manager to render the desktop. Wayfirewm is based on Wayland, the modern replacement for X11 (the default windowing system on Linux for decades). 
 
 The customized [~/.config/wayfire.ini](https://github.com/gnmearacaun/rpios-wayfirewm-config/blob/main/wayfire.ini) in the repo [incorporates and extends](https://github.com/gnmearacaun/rpios-wayfirewm-config/blob/main/howto-pi5wfwm.md) the default RPiOS config. There's a demonstration  [video](https://youtu.be/ECF7ZQ-Pdsg?si=ZKQ3Pu0pw540ZcwP).
 
@@ -29,7 +29,7 @@ Log out and back in (`Ctrl-Alt-Backspace` to logout). Now you can move around th
 
 - [space2meta](https://gitlab.com/interception/linux/plugins/space2meta): _turn your space key into the meta (a.k.a. super) key when chorded to another key_. Window managers typically make liberal use of the `super` key to move around. 
 
-`Caps2esc` is available in the repo, `space2meta` we need to build manually.
+`Caps2esc` is available in the repo, however `space2meta` needs to be built manually.
 
 ```
 sudo apt-get update
