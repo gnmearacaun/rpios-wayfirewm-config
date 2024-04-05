@@ -2,114 +2,38 @@
  
 The current Raspberry Pi OS is based on Debian Bookworm. On the surface, it looks similar to the previous Bullseye release, however RPiOS is now underpinned by Wayland and WayfireWM. Wayland is the modern replacement for X11 (the default windowing system on Linux for decades). 
 
-I originally set up Hyprland (window manager) on the pi5. To compile it, I had to change the software sources from `stable` to `testing`, an action that is not officially supported. I found out why; eventually my pi would not boot up anymore. However by adding some plugins and options, I can get the same _ease of use_ with WayfireWM. The Raspberry Pi Foundation has modernized the networking and architecture, and now uses pipewire for handling media sources (music and video) for example. The result is a smooth DE, extremely light on system resources, typically requiring <2Gb ram. 
+This repo provides a customized [~/.config/wayfire.ini](https://github.com/gnmearacaun/rpios-wayfirewm-config/blob/main/wayfire.ini) that has [incorporated and expanded](https://github.com/gnmearacaun/rpios-wayfirewm-config/blob/main/howto-pi5wfwm.md) the default RPiOS config, demonstrated in [this video](https://youtu.be/ECF7ZQ-Pdsg?si=ZKQ3Pu0pw540ZcwP).
 
-This repo provides a customized [~/.config/wayfire.ini](https://github.com/gnmearacaun/rpios-wayfirewm-config/blob/main/wayfire.ini) that has [incorporated and expanded](https://github.com/gnmearacaun/rpios-wayfirewm-config/blob/main/howto-pi5wfwm.md) the RPiOS config. 
+Assuming your Pi is up and running with Bookworm, you can try out the config by running the following commands  
 
-The following binaries make it easier to adhere to a keyboard-only workflow
-- [space2meta](https://gitlab.com/interception/linux/plugins/space2meta): _turn your space key into the meta key when chorded to another key (on key release only)_
-- [caps2esc](https://gitlab.com/interception/linux/plugins/caps2esc): _transforming the most useless key ever into the most useful one_ 
-
-- This repo has an [accompanying video](https://youtu.be/ECF7ZQ-Pdsg?si=ZKQ3Pu0pw540ZcwP) 
-
-### _Prepare the ground_ 
-
-- Reset SSD to factory settings if it's not new. Ignore if using an sdcard.
-```
-sudo nvme format -s1 -lb=0 /dev/nvme0n1
-```
-- Change `BOOT_ORDER` line to boot from an SSD. Options are read from right to left. 6 represents an nvme drive boots first, 1 is sdcard and 4 is USB boot. 
-
-```
-sudo rpi-eeprom-config --edit
-BOOT_ORDER=0xf416
-```
-- Flash Raspberry Pi OS onto your SSD/sdcard with `rpi-imager`
-
-- Reboot and follow the setup wizard.
-
-- Install some initial packages 
- 
-```
-sudo apt-get update
-sudo apt-get install aptitude vim-gtk3 wl-clipboard zsh ranger ripgrep fd-find fzf swaybg slurp alacritty zoxide lsd bat cmake ninja-build interception-caps2esc interception-tools interception-tools-compat wf-recorder timeshift obs-studio redshift wofi mako-notifier clipman kanshi 
-```
-### Obtain _this_ repo
 ```
 git clone https://github.com/gnmearacaun/rpios-wayfirewm-config.git
-```
-These configs contain customized aliases and keybindings. Run commands one line at a time.  
-
-```
 cd rpios-wayfirewm-config
 mv ~/.config/wayfire.ini wayfire.ini-original
 mv -i wayfire.ini ~/.config 
-```
-Log out and back in.
-
-- Now you can move around the windows and 9 workspaces using `super`+`{a,s,f,w,b,h,j,k,l,Tab}` and create tiles out of windows and back to tiles with `Alt`+`{h,j,k,l}`
-
-### RPiOS checklist
-
-- Customize lxterminal. Right click the taskbar and desktop to set up the system font and theme.
-
-- Xdg default desktop folders can be changed in `~/.config/usr-dirs.dirs`
-
-- Copy some nicer wallpapers (`sudo mv`) into `/usr/share/rpd-wallpaper` to set background via _Desktop Configuration Menu_. 
-
-- Note: When you edit wayfire.ini, you are automatically logged out when you change workspaces. You can use `Ctrl-Alt-Backspace` to logout/login manually. 
-
-- If your desktop freezes, log into another `tty` with `Ctrl+Alt+F3` and `reboot` 
-
-#### A minimal Vim configuration 
-
-- The package `vim-gtk3` has better clipboard support than `vim` proper. Wayland users need `wl-clipboard` to copy and paste (both were installed with the previous `apt-get` command). 
-
-I use a simple config (no plugins) authored by [jdhao](https://github.com/jdhao) before neovim is built. It can also be useful to make it available for editing files as `sudo`.
-
-```
-mv ~/.vimrc ~/.vimrc.bak
-mkdir -p ~/.vim && cd ~/.vim
-git clone https://github.com/jdhao/minimal_vim.git .
-cd && sudo cp -r .vim /root
-```
-- Tip: add the following line to your `init.vim` to yank to `wl-clipboard`. So you would visually highlight the text with `v` or `shift+v` and the motion keys `h,j,k,l` and press `<leader>` (it's mapped to the `<spacebar>`) and then `y` to copy. Most terminals have `Ctrl+Shift+v` as the paste command. 
-```
-xnoremap <silent> <leader>y y:call system("wl-copy --trim-newline", @*)<cr>:call system("wl-copy -p --trim-newline", @*)<cr>
+sudo apt-get update
+sudo apt-get install swaybg slurp 
 ```
 
-### Install Zsh and Zap
+Log out and back in (`Ctrl-Alt-Backspace` to logout). Now you can move around the windows and 9 workspaces using `super`+`{a,s,f,w,b,h,j,k,l,Tab}` and create tiles out of windows and back to tiles with `Alt`+`{h,j,k,l}`
 
-To set zsh as your default shell, execute the following.
-```
-sudo sh -c "echo $(which zsh) >> /etc/shells" && chsh -s $(which zsh)
-```
-Log out and back in. You're prompt will be basic. Install [zap](https://github.com/zap-zsh/zap) zsh plugin manager (replaces the need for `oh-my-zsh`)
-```
-zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1
-```
-Reopen the shell, `zap` automajically installs the default plugins. Plugins can be found on the [Zap homepage](https://www.zapzsh.com/) 
+- Note: When you edit wayfire.ini, you are automatically logged out as soon as you change workspaces. 
 
-### Get [Nerdfonts](https://github.com/getnf/getnf)
+- If your desktop freezes at any point, log into another `tty` with `Ctrl+Alt+F3` and `reboot` 
 
-```
-curl -fsSL https://raw.githubusercontent.com/ronniedroid/getnf/master/install.sh | bash
-```
-Run `getnf` in the terminal and follow the prompts.
+## Optional Extras
 
-The fonts you select will be available system-wide.
+### _Caps2esc_ and _Space2meta_
 
-### Build interception-tools 
+- [caps2esc](https://gitlab.com/interception/linux/plugins/caps2esc): _transforming the most useless key ever into the most useful one_ `<Caps_lock>` is `esc` when tapped and `ctrl` when held down with another key. 
 
-_Caps2esc_
+- [space2meta](https://gitlab.com/interception/linux/plugins/space2meta): _turn your space key into the meta key when chorded to another key_. 
 
-- `<Caps_lock>` is `esc` when tapped and `ctrl` when held down with another key. We installed it with `apt-get` above. 
-
-_Space2meta_
-
-- `<Space_key>` is `space` when tapped and `super` when held down in combination with other keys. To build:
+`Caps2esc` is available in the repo, `space2meta` we need to build manually.
 
 ```
+sudo apt-get update
+sudo apt-get install cmake ninja-build interception-caps2esc interception-tools interception-tools-compat 
 git clone https://gitlab.com/interception/linux/plugins/space2meta.git
 cd space2meta
 cmake -Bbuild
@@ -131,6 +55,46 @@ The following command increases the priority.
 sudo nice -n -20 udevmon -c udevmon.yaml >udevmon.log 2>udevmon.err &
 ```
 
+#### A Minimal Vim Configuration 
+
+I use a simple config (no plugins) authored by [jdhao](https://github.com/jdhao) before neovim is built. It can also be useful to make it available for editing files as `sudo`.
+
+- The package `vim-gtk3` has better clipboard support than `vim` proper. Wayland users need `wl-clipboard` to copy and paste (both were installed with the previous `apt-get` command). 
+
+```
+sudo apt-get install vim-gtk3 wl-clipboard 
+mv ~/.vimrc ~/.vimrc.bak
+mkdir -p ~/.vim && cd ~/.vim
+git clone https://github.com/jdhao/minimal_vim.git .
+cd && sudo cp -r .vim /root
+```
+- Tip: add the following line to your `init.vim` to yank to `wl-clipboard`. So you would visually highlight the text with `v` or `shift+v` and the motion keys `h,j,k,l` and press `<leader>` (it's mapped to the `<spacebar>`) and then `y` to copy. Most terminals have `Ctrl+Shift+v` as the paste command. 
+```
+xnoremap <silent> <leader>y y:call system("wl-copy --trim-newline", @*)<cr>:call system("wl-copy -p --trim-newline", @*)<cr>
+```
+
+### Zsh and Zap
+
+To set zsh as your default shell, execute the following.
+```
+sudo sh -c "echo $(which zsh) >> /etc/shells" && chsh -s $(which zsh)
+```
+Log out and back in. You're prompt will be basic. Install [zap](https://github.com/zap-zsh/zap) zsh plugin manager (replaces the need for `oh-my-zsh`)
+```
+sudo apt-get install zsh zoxide
+zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1
+```
+Reopen the shell, `zap` automajically installs the default plugins. Plugins can be found on the [Zap homepage](https://www.zapzsh.com/) 
+
+### Get [Nerdfonts](https://github.com/getnf/getnf)
+
+```
+curl -fsSL https://raw.githubusercontent.com/ronniedroid/getnf/master/install.sh | bash
+```
+Run `getnf` in the terminal and follow the prompts.
+
+The fonts you select will be available system-wide.
+
 ### Build Neovim 
 
 Neovim is improving rapidly. To take advantage of recent developments in the plugins infrastructure we need a newer version of Neovim than Bookworm offers. Neovim plays nicely with the system clipboard for copy and pasting, commenting lines easily (`gcc`) and searching for files with `telescope` and so much more.  
@@ -140,7 +104,7 @@ Neovim is improving rapidly. To take advantage of recent developments in the plu
 - Use `git checkout nightly` if you need the very latest.
 
 ```
-sudo apt-get install ninja-build gettext cmake unzip curl build-essential
+sudo apt-get install ninja-build gettext cmake unzip curl build-essential ripgrep fd-find fzf wl-clipboard 
 git clone https://github.com/neovim/neovim.git
 git checkout stable 
 make CMAKE_BUILD_TYPE=Release
