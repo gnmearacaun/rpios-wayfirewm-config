@@ -21,9 +21,9 @@ Log out and back in (`Ctrl-Alt-Backspace` to logout). Now you can move around th
 
 - If your desktop freezes at any point, log into another `tty` with `Ctrl+Alt+F3` and `reboot` 
 
-## Optional Extras
+### Optional Extras
 
-### _Caps2esc_ and _Space2meta_
+#### _Caps2esc_ and _Space2meta_
 
 - [caps2esc](https://gitlab.com/interception/linux/plugins/caps2esc): _transforming the most useless key ever into the most useful one_ `<Caps_lock>` is `esc` when tapped and `ctrl` when held down with another key. 
 
@@ -73,7 +73,7 @@ cd && sudo cp -r .vim /root
 xnoremap <silent> <leader>y y:call system("wl-copy --trim-newline", @*)<cr>:call system("wl-copy -p --trim-newline", @*)<cr>
 ```
 
-### Zsh and Zap
+#### Zsh and Zap
 
 To set zsh as your default shell, execute the following.
 ```
@@ -86,7 +86,7 @@ zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) 
 ```
 Reopen the shell, `zap` automajically installs the default plugins. Plugins can be found on the [Zap homepage](https://www.zapzsh.com/) 
 
-### Get [Nerdfonts](https://github.com/getnf/getnf)
+#### Get [Nerdfonts](https://github.com/getnf/getnf)
 
 ```
 curl -fsSL https://raw.githubusercontent.com/ronniedroid/getnf/master/install.sh | bash
@@ -95,7 +95,7 @@ Run `getnf` in the terminal and follow the prompts.
 
 The fonts you select will be available system-wide.
 
-### Build Neovim 
+#### Building a Recent Neovim 
 
 Neovim is improving rapidly. To take advantage of recent developments in the plugins infrastructure we need a newer version of Neovim than Bookworm offers. Neovim plays nicely with the system clipboard for copy and pasting, commenting lines easily (`gcc`) and searching for files with `telescope` and so much more.  
 
@@ -120,7 +120,7 @@ Now that Neovim is available, make it the default in your `.zshrc`
 export EDITOR="nvim"
 ```
 
-### Install nodejs 
+#### Install nodejs 
 
 Utilizing [nodesource](https://github.com/nodesource/distributions), run as root:
 
@@ -130,15 +130,7 @@ curl -fsSL https://deb.nodesource.com/setup_21.x | bash - &&\
 apt-get install -y nodejs
 ```
 
-### Additional Info
-
-- The following augmented command is needed to run obs-studio for video recording on the Pi:
-
-```
-MESA_GL_VERSION_OVERRIDE=3.3 obs
-```
-
-### Upgrading Neovim
+#### Upgrading Neovim
 
 Later when you want to upgrade, go back into the neovim directory (wherever it's stashed). Assuming you're on the branch you want, to rebuild from scratch and replace the current build:
 
@@ -149,7 +141,7 @@ cd build && sudo cpack -G DEB && sudo dpkg -i nvim-linux64.deb
 nvim -V1 -v
 ```
 
-### Rebuilding Neovim
+#### Rebuilding Neovim
 
 In case you have previously built the image and want to switch branches:
 ```
