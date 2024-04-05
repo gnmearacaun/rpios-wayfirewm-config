@@ -1,8 +1,6 @@
 ### A keyboard-centric configuration for Raspberry Pi 4 & 5. 
  
-The current Raspberry Pi OS is based on Debian Bookworm. On the surface, it looks similar to the previous Bullseye release, however RPiOS is now underpinned by Wayland and WayfireWM. Wayland is the modern replacement for X11 (the default windowing system on Linux for decades). 
-
-This repo provides a customized [~/.config/wayfire.ini](https://github.com/gnmearacaun/rpios-wayfirewm-config/blob/main/wayfire.ini) that has [incorporated and expanded](https://github.com/gnmearacaun/rpios-wayfirewm-config/blob/main/howto-pi5wfwm.md) the default RPiOS config, demonstrated in [this video](https://youtu.be/ECF7ZQ-Pdsg?si=ZKQ3Pu0pw540ZcwP).
+The current Raspberry Pi OS is based on Debian Bookworm. On the surface, it looks similar to the previous Bullseye release, however RPiOS is now underpinned by Wayland and WayfireWM. Wayland is the modern replacement for X11 (the default windowing system on Linux for decades). The customized [~/.config/wayfire.ini](https://github.com/gnmearacaun/rpios-wayfirewm-config/blob/main/wayfire.ini) [incorporates and expandes](https://github.com/gnmearacaun/rpios-wayfirewm-config/blob/main/howto-pi5wfwm.md) the default RPiOS config. There's a [video](https://youtu.be/ECF7ZQ-Pdsg?si=ZKQ3Pu0pw540ZcwP) to demonstrate.
 
 Assuming your Pi is up and running with Bookworm, you can try out the config by running the following commands  
 
