@@ -41,10 +41,11 @@ cmake --build build
 sudo mv build/space2meta /usr/local/bin  
 cd .. && rm -r space2meta
 ```
-
-Copy over the config from this repo, enable and start the service (you may have to logout/login to get the effect). 
+Clone this very repo, put the udevmon config in place, and enable and start the service (you may have to logout/login to get the effect). 
 
 ```
+git clone https://github.com/gnmearacaun/rpios-wayfirewm-config.git
+cd rpios-wayfirewm-config 
 sudo mv udevmon.yaml /etc/interception/udevmon.d/
 sudo systemctl enable --now udevmon.service
 ```
