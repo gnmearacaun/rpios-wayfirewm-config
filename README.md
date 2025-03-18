@@ -45,7 +45,8 @@ Clone this very repo, put the udevmon config in place, and enable and start the 
 
 ```
 git clone https://github.com/gnmearacaun/rpios-wayfirewm-config.git
-cd rpios-wayfirewm-config 
+cd rpios-wayfirewm-config
+sudo mkdir -p /etc/interception/udevmon.d
 sudo mv udevmon.yaml /etc/interception/udevmon.d/
 sudo systemctl enable --now udevmon.service
 ```
